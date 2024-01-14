@@ -1,0 +1,24 @@
+.gradle
+/local.properties
+/.idea/workspace.xml
+.DS_Store
+.idea/*
+!.idea/icon.png
+*iml
+*.iml
+/mainframer
+/.mainframer
+
+# Built files
+*/build
+/build
+*.apk
+app/**/output.json
+
+# Unnecessary file
+*.swp
+
+TODO.md
+CHANGELOG.md
+/captures
+build.sh
