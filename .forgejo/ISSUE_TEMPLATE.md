@@ -3,10 +3,10 @@
 I acknowledge that:
 
 - I have updated:
-  - To the latest version of the app (stable is v1.10.0)
+  - To the latest version of the app (stable is v1.0.0)
   - All extensions
-- I have gone through the FAQ (https://tachiyomi.org/docs/faq/general) and troubleshooting guide (https://tachiyomi.org/docs/guides/troubleshooting/)
-- If this is an issue with an official extension, that I should be opening an issue in https://github.com/tachiyomiorg/extensions
+- I have gone through the FAQ (https://fabsemanga.fabseman.space/docs/faq/general) and troubleshooting guide (https://fabsemanga.fabseman.space/docs/guides/troubleshooting/)
+- If this is an issue with an extension, that I should be opening an issue in https://github.com/keiyoushi/extensions-source
 - I have searched the existing issues and this is new ticket **NOT** a duplicate or related to another open or closed issue
 - I will fill out the title and the information in this template
 
@@ -17,7 +17,7 @@ Note that the issue will be automatically closed if you do not fill out the titl
 ---
 
 ## Device information
-* Tachiyomi version: ?
+* Fabsemanga version: ?
 * Android version: ?
 * Device: ?
 

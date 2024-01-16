@@ -1,16 +1,16 @@
 name: Lock threads
 
 on:
-  # Daily
   schedule:
     - cron: '0 0 * * *'
-  # Manual trigger
   workflow_dispatch:
     inputs:
 
 jobs:
   lock:
     runs-on: docker
+    container:
+      image: ghcr.io/catthehacker/ubuntu:full-latest
     steps:
       - uses: https://github.com/dessant/lock-threads@v5
         with:

@@ -9,13 +9,14 @@ on:
 jobs:
   moderate:
     runs-on: docker
+    container:
+      image: ghcr.io/catthehacker/ubuntu:full-latest
     steps:
       - name: Moderate issues
         uses: https://github.com/tachiyomiorg/issue-moderator-action@v2
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           duplicate-label: Duplicate
-
           auto-close-rules: |
             [
               {
@@ -39,7 +40,7 @@ jobs:
                 "regex": ".*(?:fail(?:ed|ure|s)?|can\\s*(?:no|')?t|(?:not|un).*able|(?<!n[o']?t )blocked by|error) (?:to )?(?:get past|by ?pass|penetrate)?.*cloud ?fl?are.*",
                 "ignoreCase": true,
                 "labels": ["Cloudflare protected"],
-                "message": "Refer to the **Solving Cloudflare issues** section at https://tachiyomi.org/docs/guides/troubleshooting/#cloudflare. If it doesn't work, migrate to other sources or wait until they lower their protection."
+                "message": "Extensions are no longer maintained by Mihon nor its forks, pls forward your issues to the maintainer of the extension repo you use. If it doesn't work, migrate to other sources or wait until they lower their protection."
               }
             ]
           auto-close-ignore-label: do-not-autoclose

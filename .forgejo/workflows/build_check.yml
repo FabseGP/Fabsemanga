@@ -9,11 +9,11 @@ jobs:
   check_wrapper:
     name: Validate Gradle Wrapper
     runs-on: docker
-
+    container:
+      image: ghcr.io/catthehacker/ubuntu:full-latest
     steps:
       - name: Clone repo
         uses: actions/checkout@v4
-
       - name: Validate Gradle Wrapper
         uses: https://github.com/gradle/wrapper-validation-action@v1
 
@@ -21,22 +21,20 @@ jobs:
     name: Build app
     needs: check_wrapper
     runs-on: docker
-
+    container:
+      image: ghcr.io/catthehacker/ubuntu:full-latest
     steps:
       - name: Clone repo
         uses: https://github.com/actions/checkout@v4
-
       - name: Set up JDK
         uses: https://github.com/actions/setup-java@v3
         with:
           java-version: 17
           distribution: adopt
-
       - name: Build app
         uses: https://github.com/gradle/gradle-command-action@v2
         with:
           arguments: assembleDevDebug
-
       - name: Upload APK
         uses: https://github.com/actions/upload-artifact@v3
         with:
