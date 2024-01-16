@@ -56,7 +56,7 @@ internal class GuidesStep(
     }
 }
 
-const val GETTING_STARTED_URL = "https://tachiyomi.org/docs/guides/getting-started"
+const val GETTING_STARTED_URL = "https://fabsemanga.fabseman.space/docs/guides/getting-started"
 
 @PreviewLightDark
 @Composable

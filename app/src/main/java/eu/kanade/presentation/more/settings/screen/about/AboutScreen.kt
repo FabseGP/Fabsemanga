@@ -156,7 +156,7 @@ object AboutScreen : Screen() {
                 item {
                     TextPreferenceWidget(
                         title = stringResource(MR.strings.help_translate),
-                        onPreferenceClick = { uriHandler.openUri("https://tachiyomi.org/docs/contribute#translation") },
+                        onPreferenceClick = { uriHandler.openUri("https://fabsemanga.fabseman.space/docs/contribute#translation") },
                     )
                 }
 
@@ -170,7 +170,7 @@ object AboutScreen : Screen() {
                 item {
                     TextPreferenceWidget(
                         title = stringResource(MR.strings.privacy_policy),
-                        onPreferenceClick = { uriHandler.openUri("https://tachiyomi.org/privacy/") },
+                        onPreferenceClick = { uriHandler.openUri("https://fabsemanga.fabseman.space/privacy/") },
                     )
                 }
 
@@ -184,33 +184,13 @@ object AboutScreen : Screen() {
                         LinkIcon(
                             label = stringResource(MR.strings.website),
                             icon = Icons.Outlined.Public,
-                            url = "https://tachiyomi.org",
+                            url = "https://fabsemanga.fabseman.space",
                         )
                         LinkIcon(
-                            label = "Discord",
-                            icon = CustomIcons.Discord,
-                            url = "https://discord.gg/tachiyomi",
-                        )
-                        LinkIcon(
-                            label = "X",
-                            icon = CustomIcons.X,
-                            url = "https://x.com/tachiyomiorg",
-                        )
-                        LinkIcon(
-                            label = "Facebook",
-                            icon = CustomIcons.Facebook,
-                            url = "https://facebook.com/tachiyomiorg",
-                        )
-                        LinkIcon(
-                            label = "Reddit",
-                            icon = CustomIcons.Reddit,
-                            url = "https://www.reddit.com/r/Tachiyomi",
-                        )
-                        LinkIcon(
-                            label = "GitHub",
+                            label = "Codeberg",
                             icon = CustomIcons.Github,
                             // SY -->
-                            url = "https://github.com/jobobby04/tachiyomisy",
+                            url = "https://codeberg.org/fabseman/fabsemanga/releases",
                             // SY <--
                         )
                     }

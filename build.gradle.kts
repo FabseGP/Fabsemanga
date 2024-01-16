@@ -5,7 +5,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 buildscript {
     dependencies {
-        // classpath(libs.android.shortcut.gradle)
         classpath(libs.google.services.gradle)
         classpath(libs.aboutLibraries.gradle)
         classpath(libs.sqldelight.gradle)
@@ -17,6 +16,8 @@ buildscript {
 
 plugins {
     alias(kotlinx.plugins.serialization) apply false
+    id("com.github.ben-manes.versions") version "0.41.0"
+    id("nl.littlerobots.version-catalog-update") version "0.8.3"
 }
 
 subprojects {

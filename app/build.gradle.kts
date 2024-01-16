@@ -57,8 +57,8 @@ android {
         }
         create("releaseTest") {
             applicationIdSuffix = ".rt"
-            // isMinifyEnabled = true
-            // isShrinkResources = true
+            isMinifyEnabled = true
+            isShrinkResources = true
             setProguardFiles(listOf(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"))
             matchingFallbacks.add("release")
         }

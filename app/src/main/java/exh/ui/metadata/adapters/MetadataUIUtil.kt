@@ -63,7 +63,7 @@ object MetadataUIUtil {
 
     fun TextView.bindDrawable(context: Context, @DrawableRes drawable: Int) {
         ContextCompat.getDrawable(context, drawable)?.apply {
-            setTint(context.getResourceColor(R.attr.colorAccent))
+            setTint(context.getResourceColor(androidx.appcompat.R.attr.colorAccent))
             setBounds(0, 0, 20.dpToPx, 20.dpToPx)
             setCompoundDrawables(this, null, null, null)
         }

@@ -216,7 +216,7 @@ private fun ChipGroup.setChips(items: List<String>, scope: CoroutineScope) {
             text = item
 
             isCloseIconVisible = true
-            closeIcon?.setTint(context.getResourceColor(R.attr.colorAccent))
+            closeIcon?.setTint(context.getResourceColor(androidx.appcompat.R.attr.colorAccent))
             setOnCloseIconClickListener {
                 removeView(this)
             }
@@ -230,7 +230,7 @@ private fun ChipGroup.setChips(items: List<String>, scope: CoroutineScope) {
 
         chipIcon = ContextCompat.getDrawable(context, R.drawable.ic_add_24dp)?.apply {
             isChipIconVisible = true
-            setTint(context.getResourceColor(R.attr.colorAccent))
+            setTint(context.getResourceColor(androidx.appcompat.R.attr.colorAccent))
         }
 
         setOnClickListener {

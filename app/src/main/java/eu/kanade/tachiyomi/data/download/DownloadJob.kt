@@ -39,7 +39,7 @@ class DownloadJob(context: Context, workerParams: WorkerParameters) : CoroutineW
 
     override suspend fun getForegroundInfo(): ForegroundInfo {
         val notification = applicationContext.notificationBuilder(Notifications.CHANNEL_DOWNLOADER_PROGRESS) {
-            setContentTitle(applicationContext.getString(R.string.download_notifier_downloader_title))
+            setContentTitle(applicationContext.getString(tachiyomi.i18n.R.string.download_notifier_downloader_title))
             setSmallIcon(android.R.drawable.stat_sys_download)
         }.build()
         return ForegroundInfo(
@@ -89,12 +89,12 @@ class DownloadJob(context: Context, workerParams: WorkerParameters) : CoroutineW
             val noWifi = requireWifi && !state.isWifi
             if (noWifi) {
                 downloadManager.downloaderStop(
-                    applicationContext.getString(R.string.download_notifier_text_only_wifi),
+                    applicationContext.getString(tachiyomi.i18n.R.string.download_notifier_text_only_wifi),
                 )
             }
             !noWifi
         } else {
-            downloadManager.downloaderStop(applicationContext.getString(R.string.download_notifier_no_network))
+            downloadManager.downloaderStop(applicationContext.getString(tachiyomi.i18n.R.string.download_notifier_no_network))
             false
         }
     }

@@ -60,9 +60,9 @@ class EditMergedMangaHolder(view: View, val adapter: EditMergedMangaAdapter) : F
 
     fun updateDownloadChaptersIcon(setTint: Boolean) {
         val color = if (setTint) {
-            itemView.context.getResourceColor(R.attr.colorAccent)
+            itemView.context.getResourceColor(androidx.appcompat.R.attr.colorAccent)
         } else {
-            itemView.context.getResourceColor(R.attr.colorOnSurface)
+            itemView.context.getResourceColor(com.google.android.material.R.attr.colorOnSurface)
         }
 
         binding.download.drawable.setTint(color)
@@ -70,9 +70,9 @@ class EditMergedMangaHolder(view: View, val adapter: EditMergedMangaAdapter) : F
 
     fun updateChapterUpdatesIcon(setTint: Boolean) {
         val color = if (setTint) {
-            itemView.context.getResourceColor(R.attr.colorAccent)
+            itemView.context.getResourceColor(androidx.appcompat.R.attr.colorAccent)
         } else {
-            itemView.context.getResourceColor(R.attr.colorOnSurface)
+            itemView.context.getResourceColor(com.google.android.material.R.attr.colorOnSurface)
         }
 
         binding.getChapterUpdates.drawable.setTint(color)
