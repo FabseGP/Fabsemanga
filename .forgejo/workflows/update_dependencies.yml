@@ -10,7 +10,7 @@ jobs:
   update-dependencies:
     runs-on: docker
     container:
-      image: ghcr.io/catthehacker/ubuntu:latest
+      image: docker.io/redemonbr/android-sdk:node-alpine-next
     steps:
       - uses: https://github.com/actions/checkout@v3
       - uses: https://github.com/actions/setup-java@v1
