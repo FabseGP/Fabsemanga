@@ -40,7 +40,7 @@ val releaseMapper: (GithubRelease) -> Release = {
     Release(
         it.version,
         it.info.replace(gitHubUsernameMentionRegex) { mention ->
-            "[${mention.value}](https://github.com/${mention.value.substring(1)})"
+            "[${mention.value}](https://codeberg.org/${mention.value.substring(1)})"
         },
         it.releaseLink,
         it.assets.map(GitHubAssets::downloadLink),

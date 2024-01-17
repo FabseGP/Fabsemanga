@@ -122,10 +122,6 @@
 # XmlUtil
 -keep public enum nl.adaptivity.xmlutil.EventType { *; }
 
-# Firebase
--keep class com.google.firebase.installations.** { *; }
--keep interface com.google.firebase.installations.** { *; }
-
 # SY -->
 # SqlCipher
 -keepclassmembers class net.zetetic.database.sqlcipher.SQLiteCustomFunction { *; }
@@ -150,12 +146,6 @@
 
 # === RxBinding
 -dontwarn com.google.auto.value.AutoValue
-
-# === Crashlytics
--keepattributes *Annotation*
--keepattributes SourceFile,LineNumberTable
--keep class com.crashlytics.** { *; }
--dontwarn com.crashlytics.**
 
 # === Humanize + Guava: https://github.com/google/guava/wiki/UsingProGuardWithGuava
 -dontwarn javax.lang.model.element.Modifier

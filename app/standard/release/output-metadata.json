@@ -11,8 +11,8 @@
       "type": "UNIVERSAL",
       "filters": [],
       "attributes": [],
-      "versionCode": 60,
-      "versionName": "1.10.0",
+      "versionCode": 2,
+      "versionName": "0.0.2",
       "outputFile": "app-standard-universal-release.apk"
     },
     {
@@ -24,8 +24,8 @@
         }
       ],
       "attributes": [],
-      "versionCode": 60,
-      "versionName": "1.10.0",
+      "versionCode": 2,
+      "versionName": "0.0.2",
       "outputFile": "app-standard-armeabi-v7a-release.apk"
     },
     {
@@ -37,8 +37,8 @@
         }
       ],
       "attributes": [],
-      "versionCode": 60,
-      "versionName": "1.10.0",
+      "versionCode": 2,
+      "versionName": "0.0.2",
       "outputFile": "app-standard-arm64-v8a-release.apk"
     }
   ],

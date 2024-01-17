@@ -5,11 +5,9 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 buildscript {
     dependencies {
-        classpath(libs.google.services.gradle)
         classpath(libs.aboutLibraries.gradle)
         classpath(libs.sqldelight.gradle)
         classpath(libs.moko.gradle)
-        classpath(sylibs.firebase.crashlytics.gradle)
         classpath(sylibs.versionsx)
     }
 }

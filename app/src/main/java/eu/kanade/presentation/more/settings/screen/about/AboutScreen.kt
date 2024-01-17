@@ -48,12 +48,9 @@ import tachiyomi.presentation.core.components.LinkIcon
 import tachiyomi.presentation.core.components.ScrollbarLazyColumn
 import tachiyomi.presentation.core.components.material.Scaffold
 import tachiyomi.presentation.core.i18n.stringResource
+import tachiyomi.presentation.core.icons.Codeberg
 import tachiyomi.presentation.core.icons.CustomIcons
 import tachiyomi.presentation.core.icons.Discord
-import tachiyomi.presentation.core.icons.Facebook
-import tachiyomi.presentation.core.icons.Github
-import tachiyomi.presentation.core.icons.Reddit
-import tachiyomi.presentation.core.icons.X
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import java.text.DateFormat
@@ -187,11 +184,14 @@ object AboutScreen : Screen() {
                             url = "https://fabsemanga.fabseman.space",
                         )
                         LinkIcon(
+                            label = "Discord",
+                            icon = CustomIcons.Discord,
+                            url = "https://fabsemanga.fabseman.space",
+                        )
+                        LinkIcon(
                             label = "Codeberg",
-                            icon = CustomIcons.Github,
-                            // SY -->
+                            icon = CustomIcons.Codeberg,
                             url = "https://codeberg.org/fabseman/fabsemanga/releases",
-                            // SY <--
                         )
                     }
                 }

@@ -43,12 +43,8 @@ Features of Fabsemanga include:
 * Merge multiple of the same manga from different sources
 * Drag and drop library sorting
 * Library search engine, includes exclude, quotes as absolute, and a bunch of other ways to search
-* New E-Hentai/ExHentai features, such as language settings and watched list settings
 * Enhanced views for internal and integrated sources
 * Enhanced usability for internal and delegated sources
-
-Custom sources:
-* E-Hentai/ExHentai
 
 Additional features for some extensions, features include custom description, opening in app, batch add to library, and a bunch of other things based on the source:
 * 8Muses (EroMuse)

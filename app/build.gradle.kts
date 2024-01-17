@@ -10,12 +10,6 @@ plugins {
     id("com.github.ben-manes.versions")
 }
 
-if (gradle.startParameter.taskRequests.toString().contains("Standard")) {
-    apply<com.google.gms.googleservices.GoogleServicesPlugin>()
-    // Firebase Crashlytics
-    apply(plugin = "com.google.firebase.crashlytics")
-}
-
 // shortcutHelper.setFilePath("./shortcuts.xml")
 
 val SUPPORTED_ABIS = setOf("armeabi-v7a", "arm64-v8a")
@@ -26,8 +20,8 @@ android {
     defaultConfig {
         applicationId = "eu.kanade.fabsemanga.psyduck"
 
-        versionCode = 60
-        versionName = "1.10.0"
+        versionCode = 2
+        versionName = "0.0.2"
 
         buildConfigField("String", "COMMIT_COUNT", "\"${getCommitCount()}\"")
         buildConfigField("String", "COMMIT_SHA", "\"${getGitSha()}\"")
@@ -252,10 +246,6 @@ dependencies {
     // Logging
     implementation(libs.logcat)
 
-    // Crash reports/analytics
-    // implementation(libs.bundles.acra)
-    // "standardImplementation"(libs.firebase.analytics)
-
     // Shizuku
     implementation(libs.bundles.shizuku)
 
@@ -269,10 +259,6 @@ dependencies {
     // SY -->
     // Text distance (EH)
     implementation(sylibs.simularity)
-
-    // Firebase (EH)
-    implementation(sylibs.firebase.analytics)
-    implementation(sylibs.firebase.crashlytics.ktx)
 
     // Better logging (EH)
     implementation(sylibs.xlog)

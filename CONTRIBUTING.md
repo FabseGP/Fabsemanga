@@ -51,4 +51,3 @@ When creating a fork, remember to:
     - Change the `applicationId` in [`build.gradle.kts`](https://codeberg.org/fabseman/fabsemanga/src/branch/master/app/build.gradle.kts)
 - To avoid having your data polluting the main app's analytics and crash report services:
     - If you want to use Firebase analytics, replace [`google-services.json`](https://codeberg.org/fabseman/fabsemanga/src/branch/master/app/src/standard/google-services.json) with your own
-    - If you want to use ACRA crash reporting, replace the `ACRA_URI` endpoint in [`build.gradle.kts`](https://codeberg.org/fabseman/fabsemanga/src/branch/master/build.gradle.kts) with your own
