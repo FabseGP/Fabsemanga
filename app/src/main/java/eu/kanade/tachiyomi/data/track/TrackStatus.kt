@@ -2,12 +2,9 @@ package eu.kanade.tachiyomi.data.track
 
 import dev.icerock.moko.resources.StringResource
 import eu.kanade.tachiyomi.data.track.anilist.Anilist
-import eu.kanade.tachiyomi.data.track.bangumi.Bangumi
 import eu.kanade.tachiyomi.data.track.kitsu.Kitsu
 import eu.kanade.tachiyomi.data.track.komga.Komga
-import eu.kanade.tachiyomi.data.track.mangaupdates.MangaUpdates
 import eu.kanade.tachiyomi.data.track.myanimelist.MyAnimeList
-import eu.kanade.tachiyomi.data.track.shikimori.Shikimori
 import exh.md.utils.FollowStatus
 import tachiyomi.i18n.MR
 import tachiyomi.i18n.sy.SYMR
@@ -69,42 +66,11 @@ enum class TrackStatus(val int: Int, val res: StringResource) {
                         else -> null
                     }
                 }
-                trackerManager.shikimori.id -> {
-                    when (status) {
-                        Shikimori.READING -> READING
-                        Shikimori.COMPLETED -> COMPLETED
-                        Shikimori.ON_HOLD -> PAUSED
-                        Shikimori.PLAN_TO_READ -> PLAN_TO_READ
-                        Shikimori.DROPPED -> DROPPED
-                        Shikimori.REREADING -> REPEATING
-                        else -> null
-                    }
-                }
-                trackerManager.bangumi.id -> {
-                    when (status) {
-                        Bangumi.READING -> READING
-                        Bangumi.COMPLETED -> COMPLETED
-                        Bangumi.ON_HOLD -> PAUSED
-                        Bangumi.PLAN_TO_READ -> PLAN_TO_READ
-                        Bangumi.DROPPED -> DROPPED
-                        else -> null
-                    }
-                }
                 trackerManager.komga.id -> {
                     when (status) {
                         Komga.READING -> READING
                         Komga.COMPLETED -> COMPLETED
                         Komga.UNREAD -> null
-                        else -> null
-                    }
-                }
-                trackerManager.mangaUpdates.id -> {
-                    when (status) {
-                        MangaUpdates.READING_LIST -> READING
-                        MangaUpdates.COMPLETE_LIST -> COMPLETED
-                        MangaUpdates.ON_HOLD_LIST -> PAUSED
-                        MangaUpdates.WISH_LIST -> PLAN_TO_READ
-                        MangaUpdates.UNFINISHED_LIST -> DROPPED
                         else -> null
                     }
                 }

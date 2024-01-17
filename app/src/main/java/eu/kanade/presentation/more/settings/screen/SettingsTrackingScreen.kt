@@ -46,9 +46,9 @@ import eu.kanade.tachiyomi.data.track.EnhancedTracker
 import eu.kanade.tachiyomi.data.track.Tracker
 import eu.kanade.tachiyomi.data.track.TrackerManager
 import eu.kanade.tachiyomi.data.track.anilist.AnilistApi
-import eu.kanade.tachiyomi.data.track.bangumi.BangumiApi
+//import eu.kanade.tachiyomi.data.track.bangumi.BangumiApi
 import eu.kanade.tachiyomi.data.track.myanimelist.MyAnimeListApi
-import eu.kanade.tachiyomi.data.track.shikimori.ShikimoriApi
+//import eu.kanade.tachiyomi.data.track.shikimori.ShikimoriApi
 import eu.kanade.tachiyomi.util.system.openInBrowser
 import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.collections.immutable.persistentListOf
@@ -145,7 +145,7 @@ object SettingsTrackingScreen : SearchableSettings {
                         tracker = trackerManager.kitsu,
                         login = { dialog = LoginDialog(trackerManager.kitsu, MR.strings.email) },
                         logout = { dialog = LogoutDialog(trackerManager.kitsu) },
-                    ),
+                    ),/*
                     Preference.PreferenceItem.TrackerPreference(
                         title = trackerManager.mangaUpdates.name,
                         tracker = trackerManager.mangaUpdates,
@@ -163,7 +163,7 @@ object SettingsTrackingScreen : SearchableSettings {
                         tracker = trackerManager.bangumi,
                         login = { context.openInBrowser(BangumiApi.authUrl(), forceDefaultBrowser = true) },
                         logout = { dialog = LogoutDialog(trackerManager.bangumi) },
-                    ),
+                    ),*/
                     Preference.PreferenceItem.InfoPreference(stringResource(MR.strings.tracking_info)),
                 ),
             ),

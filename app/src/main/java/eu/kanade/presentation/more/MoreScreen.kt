@@ -59,7 +59,6 @@ fun MoreScreen(
     onClickSettings: () -> Unit,
     onClickAbout: () -> Unit,
     // SY -->
-    onClickBatchAdd: () -> Unit,
     onClickUpdates: () -> Unit,
     onClickHistory: () -> Unit,
     onClickRepos: () -> Unit,
@@ -194,15 +193,6 @@ fun MoreScreen(
                     onPreferenceClick = onClickDataAndStorage,
                 )
             }
-            // SY -->
-            item {
-                TextPreferenceWidget(
-                    title = stringResource(SYMR.strings.eh_batch_add),
-                    icon = Icons.AutoMirrored.Outlined.PlaylistAdd,
-                    onPreferenceClick = onClickBatchAdd,
-                )
-            }
-            // SY <--
 
             item { HorizontalDivider() }
 

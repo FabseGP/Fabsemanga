@@ -6,11 +6,8 @@ plugins {
     kotlin("android")
     kotlin("plugin.parcelize")
     kotlin("plugin.serialization")
-    // id("com.github.zellius.shortcut-helper")
     id("com.github.ben-manes.versions")
 }
-
-// shortcutHelper.setFilePath("./shortcuts.xml")
 
 val SUPPORTED_ABIS = setOf("armeabi-v7a", "arm64-v8a")
 
@@ -21,7 +18,7 @@ android {
         applicationId = "eu.kanade.fabsemanga.psyduck"
 
         versionCode = 2
-        versionName = "0.0.2"
+        versionName = "0.0.3"
 
         buildConfigField("String", "COMMIT_COUNT", "\"${getCommitCount()}\"")
         buildConfigField("String", "COMMIT_SHA", "\"${getGitSha()}\"")

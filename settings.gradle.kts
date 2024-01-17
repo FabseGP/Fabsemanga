@@ -38,7 +38,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "TachiyomiSY"
+rootProject.name = "Fabsemanga"
 include(":app")
 include(":i18n")
 include(":i18n-sy")

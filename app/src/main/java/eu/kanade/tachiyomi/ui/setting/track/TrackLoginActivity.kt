@@ -9,9 +9,7 @@ class TrackLoginActivity : BaseOAuthLoginActivity() {
     override fun handleResult(data: Uri?) {
         when (data?.host) {
             "anilist-auth" -> handleAnilist(data)
-            "bangumi-auth" -> handleBangumi(data)
             "myanimelist-auth" -> handleMyAnimeList(data)
-            "shikimori-auth" -> handleShikimori(data)
         }
     }
 
@@ -29,19 +27,6 @@ class TrackLoginActivity : BaseOAuthLoginActivity() {
         }
     }
 
-    private fun handleBangumi(data: Uri) {
-        val code = data.getQueryParameter("code")
-        if (code != null) {
-            lifecycleScope.launchIO {
-                trackerManager.bangumi.login(code)
-                returnToSettings()
-            }
-        } else {
-            trackerManager.bangumi.logout()
-            returnToSettings()
-        }
-    }
-
     private fun handleMyAnimeList(data: Uri) {
         val code = data.getQueryParameter("code")
         if (code != null) {
@@ -55,16 +40,4 @@ class TrackLoginActivity : BaseOAuthLoginActivity() {
         }
     }
 
-    private fun handleShikimori(data: Uri) {
-        val code = data.getQueryParameter("code")
-        if (code != null) {
-            lifecycleScope.launchIO {
-                trackerManager.shikimori.login(code)
-                returnToSettings()
-            }
-        } else {
-            trackerManager.shikimori.logout()
-            returnToSettings()
-        }
-    }
 }
