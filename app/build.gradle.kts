@@ -15,7 +15,7 @@ plugins {
 val SUPPORTED_ABIS = setOf("armeabi-v7a", "arm64-v8a")
 
 android {
-    namespace = "eu.kanade.tachiyomi"
+    namespace = "eu.kanade.fabsemanga"
 
     defaultConfig {
         applicationId = "eu.kanade.fabsemanga.psyduck"
