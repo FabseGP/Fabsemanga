@@ -1,4 +1,5 @@
 name: CI
+
 on: [pull_request]
 
 concurrency:
@@ -22,7 +23,7 @@ jobs:
     needs: check_wrapper
     runs-on: docker
     container:
-      image: ghcr.io/catthehacker/ubuntu:full-latest
+      image: ghcr.io/catthehacker/ubuntu:latest
     steps:
       - name: Clone repo
         uses: https://github.com/actions/checkout@v4

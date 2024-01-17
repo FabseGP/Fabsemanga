@@ -10,7 +10,7 @@ jobs:
   lock:
     runs-on: docker
     container:
-      image: ghcr.io/catthehacker/ubuntu:full-latest
+      image: ghcr.io/catthehacker/ubuntu:latest
     steps:
       - uses: https://github.com/dessant/lock-threads@v5
         with:

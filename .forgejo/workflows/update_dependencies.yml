@@ -1,32 +1,35 @@
 name: Update dependencies
- on:
-   workflow_dispatch:
-   schedule:
-     - cron: '00 6 1 * *'
- jobs:
-   update-dependencies:
+
+on:
+  schedule:
+    - cron: '00 6 1 * *'
+  workflow_dispatch:
+    inputs:
+
+jobs:
+  update-dependencies:
     runs-on: docker
     container:
-      image: ghcr.io/catthehacker/ubuntu:full-latest
-     steps:
-       - uses: https://github.com/actions/checkout@v3
-       - uses: https://github.com/actions/setup-java@v1
-         with:
-           java-version: 11
-       - name: Grant execute permission for gradlew
-         run: chmod +x gradlew
-       - name: Perform dependencies resolution and update
-         run: ./gradlew versionCatalogUpdate
-       - name: Create Pull Request
-         uses: https://github.com/peter-evans/create-pull-request@v4
-         with:
-           token: ${{ secrets.GITHUB_TOKEN }}
-           commit-message: update dependencies
-           committer: Codeberg noreply@codeberg.com
-           author: Codeberg noreply@codeberg.com
-           title: Update dependencies
-           body: |
-             Dependencies update.
-             Check the Version Catalog to see which dependencies need an update.
-       branch: update-dependencies
-       delete-branch: true
+      image: ghcr.io/catthehacker/ubuntu:latest
+    steps:
+      - uses: https://github.com/actions/checkout@v3
+      - uses: https://github.com/actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Perform dependencies resolution and update
+        run: ./gradlew versionCatalogUpdate
+      - name: Create Pull Request
+        uses: https://github.com/peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: update dependencies
+          committer: Codeberg noreply@codeberg.com
+          author: Codeberg noreply@codeberg.com
+          title: Update dependencies
+          body: |
+            Dependencies update.
+            Check the Version Catalog to see which dependencies need an update.
+      branch: update-dependencies
+      delete-branch: true
