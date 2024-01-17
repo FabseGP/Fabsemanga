@@ -11,7 +11,7 @@ jobs:
     name: Validate Gradle Wrapper
     runs-on: docker
     container:
-      image: docker.io/redemonbr/android-sdk:mantic-next
+      image: ghcr.io/catthehacker/ubuntu:runner-latest
     steps:
       - name: Clone repo
         uses: actions/checkout@v4
@@ -23,7 +23,7 @@ jobs:
     needs: check_wrapper
     runs-on: docker
     container:
-      image: docker.io/redemonbr/android-sdk:mantic-next
+      image: ghcr.io/catthehacker/ubuntu:runner-latest
     steps:
       - name: Clone repo
         uses: https://github.com/actions/checkout@v4
@@ -32,12 +32,14 @@ jobs:
         with:
           java-version: 17
           distribution: adopt
+      - name: Set up Android SDK
+        uses: https://github.com/amyu/setup-android@v4
       - name: Build app
         uses: https://github.com/gradle/gradle-command-action@v2
         with:
           arguments: assembleDevDebug
       - name: Upload APK
-        uses: https://github.com/actions/upload-artifact@v3
+        uses: https://github.com/actions/upload-artifact@v4
         with:
           name: Fabsemanga-${{ github.sha }}.apk
           path: app/build/outputs/apk/dev/debug/app-dev-debug.apk

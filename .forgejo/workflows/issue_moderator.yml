@@ -10,7 +10,7 @@ jobs:
   moderate:
     runs-on: docker
     container:
-      image: docker.io/redemonbr/android-sdk:mantic-next
+      image: ghcr.io/catthehacker/ubuntu:runner-latest
     steps:
       - name: Moderate issues
         uses: https://github.com/tachiyomiorg/issue-moderator-action@v2

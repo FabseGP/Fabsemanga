@@ -10,18 +10,20 @@ jobs:
   update-dependencies:
     runs-on: docker
     container:
-      image: docker.io/redemonbr/android-sdk:mantic-next
+      image: ghcr.io/catthehacker/ubuntu:runner-latest
     steps:
-      - uses: https://github.com/actions/checkout@v3
-      - uses: https://github.com/actions/setup-java@v1
+      - uses: https://github.com/actions/checkout@v4
+      - name: Set up JDK
+        uses: https://github.com/actions/setup-java@v3
         with:
-          java-version: 11
+          java-version: 17
+          distribution: adopt
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Perform dependencies resolution and update
         run: ./gradlew versionCatalogUpdate
       - name: Create Pull Request
-        uses: https://github.com/peter-evans/create-pull-request@v4
+        uses: https://github.com/peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: update dependencies

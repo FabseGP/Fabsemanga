@@ -10,9 +10,10 @@ jobs:
   lock:
     runs-on: docker
     container:
-      image: docker.io/redemonbr/android-sdk:mantic-next
+      image: ghcr.io/catthehacker/ubuntu:runner-latest
     steps:
-      - uses: https://github.com/dessant/lock-threads@v5
+      - name: Lock Threads after a period of inactivity
+        uses: https://github.com/dessant/lock-threads@v5
         with:
           github-token: ${{ github.token }}
           issue-inactive-days: '2'

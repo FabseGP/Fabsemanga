@@ -14,7 +14,7 @@ jobs:
     name: Build release app
     runs-on: docker
     container:
-      image: docker.io/redemonbr/android-sdk:mantic-next
+      image: ghcr.io/catthehacker/ubuntu:runner-latest
     steps:
       - name: Clone repo
         uses: https://github.com/actions/checkout@v4
@@ -24,7 +24,9 @@ jobs:
         uses: https://github.com/actions/setup-java@v4
         with:
           java-version: 17
-          distribution: adopt
+          distribution: adopt 
+      - name: Set up Android SDK
+        uses: https://github.com/amyu/setup-android@v4
       - name: Build app and run unit tests
         uses: https://github.com/gradle/gradle-command-action@v2
         with:
@@ -51,7 +53,7 @@ jobs:
 
           cp app/build/outputs/apk/standard/release/app-standard-armeabi-v7a-release-unsigned-signed.apk Fabsemanga-armeabi-v7a.apk
           sha=`sha256sum Fabsemanga-armeabi-v7a.apk | awk '{ print $1 }'`
-          echo "APK_ARMEABI_V7A_SHA=$sha" >> $GITHUB_ENV
+          echo "APK_ARMEABI_V7A_SHA=$sha" >> $GITHUB_ENV          
       - name: Create release
         uses: https://github.com/softprops/action-gh-release@v1
         with:
@@ -66,11 +68,11 @@ jobs:
             | ------- | ------- |
             | Universal | ${{ env.APK_UNIVERSAL_SHA }} |
             | arm64-v8a | ${{ env.APK_ARM64_V8A_SHA }} |
-            | armeabi-v7a | ${{ env.APK_ARMEABI_V7A_SHA }} |
+            | armeabi-v7a | ${{ env.APK_ARMEABI_V7A_SHA }} |            
           files: |
             Fabsemanga.apk
             Fabsemanga-arm64-v8a.apk
-            Fabsemanga-armeabi-v7a.apk
+            Fabsemanga-armeabi-v7a.apk            
           draft: true
           prerelease: false
         env:
