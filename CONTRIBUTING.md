@@ -49,5 +49,3 @@ When creating a fork, remember to:
     - Change or disable the [app update checker](https://codeberg.org/fabseman/fabsemanga/src/branch/master/app/src/main/java/eu/kanade/tachiyomi/data/updater/AppUpdateChecker.kt)
 - To avoid installation conflicts:
     - Change the `applicationId` in [`build.gradle.kts`](https://codeberg.org/fabseman/fabsemanga/src/branch/master/app/build.gradle.kts)
-- To avoid having your data polluting the main app's analytics and crash report services:
-    - If you want to use Firebase analytics, replace [`google-services.json`](https://codeberg.org/fabseman/fabsemanga/src/branch/master/app/src/standard/google-services.json) with your own

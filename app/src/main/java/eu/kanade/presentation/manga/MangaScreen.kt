@@ -70,11 +70,6 @@ import eu.kanade.tachiyomi.source.getNameForMangaInfo
 import eu.kanade.tachiyomi.source.online.MetadataSource
 import eu.kanade.tachiyomi.source.online.all.EHentai
 import eu.kanade.tachiyomi.source.online.all.MangaDex
-import eu.kanade.tachiyomi.source.online.all.NHentai
-import eu.kanade.tachiyomi.source.online.english.EightMuses
-import eu.kanade.tachiyomi.source.online.english.HBrowse
-import eu.kanade.tachiyomi.source.online.english.Pururin
-import eu.kanade.tachiyomi.source.online.english.Tsumino
 import eu.kanade.tachiyomi.ui.manga.ChapterList
 import eu.kanade.tachiyomi.ui.manga.MangaScreenModel
 import eu.kanade.tachiyomi.ui.manga.PagePreviewState
@@ -84,12 +79,7 @@ import exh.source.MERGED_SOURCE_ID
 import exh.source.getMainSource
 import exh.source.isEhBasedManga
 import exh.ui.metadata.adapters.EHentaiDescription
-import exh.ui.metadata.adapters.EightMusesDescription
-import exh.ui.metadata.adapters.HBrowseDescription
 import exh.ui.metadata.adapters.MangaDexDescription
-import exh.ui.metadata.adapters.NHentaiDescription
-import exh.ui.metadata.adapters.PururinDescription
-import exh.ui.metadata.adapters.TsuminoDescription
 import tachiyomi.domain.chapter.model.Chapter
 import tachiyomi.domain.chapter.service.missingChaptersCount
 import tachiyomi.domain.library.service.LibraryPreferences
@@ -1063,21 +1053,6 @@ fun metadataDescription(source: Source): MetadataDescriptionComposable? {
             }
             is MangaDex -> { state, openMetadataViewer, _ ->
                 MangaDexDescription(state, openMetadataViewer)
-            }
-            is NHentai -> { state, openMetadataViewer, _ ->
-                NHentaiDescription(state, openMetadataViewer)
-            }
-            is EightMuses -> { state, openMetadataViewer, _ ->
-                EightMusesDescription(state, openMetadataViewer)
-            }
-            is HBrowse -> { state, openMetadataViewer, _ ->
-                HBrowseDescription(state, openMetadataViewer)
-            }
-            is Pururin -> { state, openMetadataViewer, _ ->
-                PururinDescription(state, openMetadataViewer)
-            }
-            is Tsumino -> { state, openMetadataViewer, _ ->
-                TsuminoDescription(state, openMetadataViewer)
             }
             else -> null
         }

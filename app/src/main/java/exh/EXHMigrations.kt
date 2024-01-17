@@ -16,7 +16,6 @@ import eu.kanade.tachiyomi.data.track.TrackerManager
 import eu.kanade.tachiyomi.network.NetworkPreferences
 import eu.kanade.tachiyomi.network.PREF_DOH_CLOUDFLARE
 import eu.kanade.tachiyomi.source.Source
-import eu.kanade.tachiyomi.source.online.all.NHentai
 import eu.kanade.tachiyomi.ui.reader.setting.ReaderOrientation
 import eu.kanade.tachiyomi.ui.reader.setting.ReaderPreferences
 import eu.kanade.tachiyomi.util.system.DeviceUtil
@@ -25,9 +24,7 @@ import exh.eh.EHentaiUpdateWorker
 import exh.log.xLogE
 import exh.source.BlacklistedSources
 import exh.source.EH_SOURCE_ID
-import exh.source.HBROWSE_SOURCE_ID
 import exh.source.MERGED_SOURCE_ID
-import exh.source.TSUMINO_SOURCE_ID
 import exh.util.nullIfBlank
 import exh.util.under
 import kotlinx.coroutines.runBlocking
@@ -119,21 +116,6 @@ object EXHMigrations {
                 }
 
                 val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-                if (oldVersion under 4) {
-                    updateSourceId(HBROWSE_SOURCE_ID, 6912)
-                    // Migrate BHrowse URLs
-                    val hBrowseManga = runBlocking { getMangaBySource.await(HBROWSE_SOURCE_ID) }
-                    val mangaUpdates = hBrowseManga.map {
-                        MangaUpdate(it.id, url = it.url + "/c00001/")
-                    }
-
-                    runBlocking {
-                        updateManga.awaitAll(mangaUpdates)
-                    }
-                }
-                if (oldVersion under 6) {
-                    updateSourceId(NHentai.otherId, 6907)
-                }
                 if (oldVersion under 7) {
                     val mergedMangas = runBlocking { getMangaBySource.await(MERGED_SOURCE_ID) }
 
@@ -668,28 +650,6 @@ object EXHMigrations {
 
     fun migrateBackupEntry(manga: Manga): Manga {
         var newManga = manga
-        if (newManga.source == 6907L) {
-            newManga = newManga.copy(
-                // Migrate the old source to the delegated one
-                source = NHentai.otherId,
-                // Migrate nhentai URLs
-                url = getUrlWithoutDomain(newManga.url),
-            )
-        }
-
-        // Migrate Tsumino source IDs
-        if (newManga.source == 6909L) {
-            newManga = newManga.copy(
-                source = TSUMINO_SOURCE_ID,
-            )
-        }
-
-        if (newManga.source == 6912L) {
-            newManga = newManga.copy(
-                source = HBROWSE_SOURCE_ID,
-                url = newManga.url + "/c00001/",
-            )
-        }
 
         // Allow importing of EHentai extension backups
         if (newManga.source in BlacklistedSources.EHENTAI_EXT_SOURCES) {

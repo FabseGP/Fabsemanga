@@ -12,7 +12,6 @@ import eu.kanade.tachiyomi.data.cache.PagePreviewCache
 import eu.kanade.tachiyomi.data.track.TrackerManager
 import eu.kanade.tachiyomi.network.NetworkPreferences
 import eu.kanade.tachiyomi.source.AndroidSourceManager
-import eu.kanade.tachiyomi.source.online.all.NHentai
 import eu.kanade.tachiyomi.ui.reader.setting.ReaderPreferences
 import eu.kanade.tachiyomi.util.system.workManager
 import exh.EXHMigrations
@@ -21,7 +20,6 @@ import exh.eh.EHentaiUpdateWorker
 import exh.metadata.metadata.EHentaiSearchMetadata
 import exh.source.EH_SOURCE_ID
 import exh.source.EXH_SOURCE_ID
-import exh.source.nHentaiSourceIds
 import exh.util.jobScheduler
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.protobuf.schema.ProtoBufSchemaGenerator
@@ -331,12 +329,6 @@ object DebugFunctions {
 
     fun resetReaderViewerForAllManga() {
         runBlocking { handler.await { ehQueries.resetReaderViewerForAllManga() } }
-    }
-
-    fun migrateLangNhentaiToMultiLangSource() {
-        val sources = nHentaiSourceIds - NHentai.otherId
-
-        runBlocking { handler.await { ehQueries.migrateAllNhentaiToOtherLang(NHentai.otherId, sources) } }
     }
 
     fun exportProtobufScheme() = ProtoBufSchemaGenerator.generateSchemaText(Backup.serializer().descriptor)

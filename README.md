@@ -9,7 +9,7 @@ Features of Tachiyomi(original) include:
 * Online reading from a variety of sources
 * Local reading of downloaded content
 * A configurable reader with multiple viewers, reading directions and other settings.
-* Tracker support: [MyAnimeList](https://myanimelist.net/), [AniList](https://anilist.co/), [Kitsu](https://kitsu.io/), [MangaUpdates](https://mangaupdates.com), [Shikimori](https://shikimori.one), and [Bangumi](https://bgm.tv/) support
+* Tracker support: [MyAnimeList](https://myanimelist.net/), [AniList](https://anilist.co/) and [Kitsu](https://kitsu.io/) support
 * Categories to organize your library
 * Light and dark themes
 * Schedule updating your library for new chapters
@@ -29,14 +29,12 @@ Features of Fabsemanga include:
 * Smart background for reading modes like LTR or Vertical, changes the background based on the page color
 * Force disable webtoon zoom
 * Continue reading button in library
-* Hentai features enable/disable, in advanced settings
 * Quick clean titles
 * Source migration, migrate all your manga from one source to another
 * Saving searches
 * Autoscroll
 * Page preload customization
 * Customize image cache size
-* Batch import of custom sources and featured extensions
 * Automatic CAPTCHA solving
 * Advanced source settings page, searching, enable/disable all
 * Click tag for local search, long click tag for global search
@@ -46,13 +44,8 @@ Features of Fabsemanga include:
 * Enhanced views for internal and integrated sources
 * Enhanced usability for internal and delegated sources
 
-Additional features for some extensions, features include custom description, opening in app, batch add to library, and a bunch of other things based on the source:
-* 8Muses (EroMuse)
-* HBrowse
+Additional features for some extensions, features include custom description, opening in app and a bunch of other things based on the source:
 * Mangadex
-* NHentai
-* Puruin
-* Tsumino
 
 ## Download
 Get the app from our [releases page](https://codeberg.org/fabseman/fabsemanga/releases).

@@ -9,11 +9,6 @@ WHERE source = :oldId;
 getChaptersByMangaIds:
 SELECT * FROM chapters WHERE manga_id IN :mangaIds;
 
-migrateAllNhentaiToOtherLang:
-UPDATE mangas
-SET source = :nh
-WHERE favorite = 1 AND source IN :sources;
-
 resetReaderViewerForAllManga:
 UPDATE mangas
 SET viewer = 0;

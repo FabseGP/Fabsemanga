@@ -18,7 +18,6 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import eu.kanade.presentation.browse.components.BrowseSourceComfortableGrid
 import eu.kanade.presentation.browse.components.BrowseSourceCompactGrid
-import eu.kanade.presentation.browse.components.BrowseSourceEHentaiList
 import eu.kanade.presentation.browse.components.BrowseSourceList
 import eu.kanade.presentation.components.AppBar
 import eu.kanade.presentation.util.formattedMessage
@@ -45,9 +44,6 @@ fun BrowseSourceContent(
     source: Source?,
     mangaList: LazyPagingItems<StateFlow</* SY --> */Pair<Manga, RaisedSearchMetadata?>/* SY <-- */>>,
     columns: GridCells,
-    // SY -->
-    ehentaiBrowseDisplayMode: Boolean,
-    // SY <--
     displayMode: LibraryDisplayMode,
     snackbarHostState: SnackbarHostState,
     contentPadding: PaddingValues,
@@ -134,18 +130,6 @@ fun BrowseSourceContent(
         )
         return
     }
-
-    // SY -->
-    if (source?.isEhBasedSource() == true && ehentaiBrowseDisplayMode) {
-        BrowseSourceEHentaiList(
-            mangaList = mangaList,
-            contentPadding = contentPadding,
-            onMangaClick = onMangaClick,
-            onMangaLongClick = onMangaLongClick,
-        )
-        return
-    }
-    // SY <--
 
     when (displayMode) {
         LibraryDisplayMode.ComfortableGrid -> {

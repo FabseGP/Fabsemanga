@@ -50,7 +50,6 @@ import exh.source.MERGED_SOURCE_ID
 import exh.source.isEhBasedManga
 import exh.source.isMetadataSource
 import exh.source.mangaDexSourceIds
-import exh.source.nHentaiSourceIds
 import exh.util.cancellable
 import exh.util.isLewd
 import exh.util.nullIfBlank
@@ -713,8 +712,7 @@ class LibraryScreenModel(
     // SY -->
     fun cleanTitles() {
         state.value.selection.fastFilter {
-            it.manga.isEhBasedManga() ||
-                it.manga.source in nHentaiSourceIds
+            it.manga.isEhBasedManga()
         }.fastForEach { (manga) ->
             val editedTitle = manga.title.replace("\\[.*?]".toRegex(), "").trim().replace("\\(.*?\\)".toRegex(), "").trim().replace("\\{.*?\\}".toRegex(), "").trim().let {
                 if (it.contains("|")) {
@@ -1327,8 +1325,7 @@ class LibraryScreenModel(
         // SY -->
         val showCleanTitles: Boolean by lazy {
             selection.any {
-                it.manga.isEhBasedManga() ||
-                    it.manga.source in nHentaiSourceIds
+                it.manga.isEhBasedManga()
             }
         }
 
