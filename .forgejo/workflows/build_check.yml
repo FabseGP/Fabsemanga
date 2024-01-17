@@ -11,7 +11,7 @@ jobs:
     name: Validate Gradle Wrapper
     runs-on: docker
     container:
-      image: docker.io/redemonbr/android-sdk:node-alpine-next
+      image: docker.io/redemonbr/android-sdk:mantic-next
     steps:
       - name: Clone repo
         uses: actions/checkout@v4
@@ -23,7 +23,7 @@ jobs:
     needs: check_wrapper
     runs-on: docker
     container:
-      image: docker.io/redemonbr/android-sdk:node-alpine-next
+      image: docker.io/redemonbr/android-sdk:mantic-next
     steps:
       - name: Clone repo
         uses: https://github.com/actions/checkout@v4

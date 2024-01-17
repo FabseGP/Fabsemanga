@@ -10,7 +10,7 @@ jobs:
   lock:
     runs-on: docker
     container:
-      image: docker.io/redemonbr/android-sdk:node-alpine-next
+      image: docker.io/redemonbr/android-sdk:mantic-next
     steps:
       - uses: https://github.com/dessant/lock-threads@v5
         with:

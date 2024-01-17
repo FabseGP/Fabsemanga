@@ -10,7 +10,7 @@ jobs:
   update-dependencies:
     runs-on: docker
     container:
-      image: docker.io/redemonbr/android-sdk:node-alpine-next
+      image: docker.io/redemonbr/android-sdk:mantic-next
     steps:
       - uses: https://github.com/actions/checkout@v3
       - uses: https://github.com/actions/setup-java@v1
