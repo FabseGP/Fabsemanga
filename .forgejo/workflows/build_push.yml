@@ -28,9 +28,10 @@ jobs:
       - name: Set up Android SDK
         uses: https://github.com/amyu/setup-android@v4
       - name: Build app and run unit tests
-        uses: https://github.com/gradle/gradle-command-action@v2
+        uses: https://github.com/gradle/gradle-build-action@v2
         with:
-          arguments: ktlintCheck assembleStandardRelease testStandardReleaseUnitTest --stacktrace
+          gradle-version: release-candidate
+          arguments: assembleStandardRelease testStandardReleaseUnitTest --stacktrace
       - name: Sign APK
         uses: https://github.com/r0adkll/sign-android-release@v1
         with:
