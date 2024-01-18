@@ -15,7 +15,6 @@ kotlin {
                 // SY <--
 
                 implementation(libs.unifile)
-                implementation(libs.junrar)
                 // SY -->
                 implementation(libs.zip4j)
                 // SY <--

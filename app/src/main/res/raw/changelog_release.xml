@@ -4,6 +4,9 @@
         <changelogtext>[b]Based on Mihon stable 0.16.0[/b]</changelogtext>
         <changelogtext>Removed Bangumi, Mangaupdates and Shikimori trackers</changelogtext>
         <changelogtext>Removed all delegated sources, except Mangadex</changelogtext>
+        <changelogtext>Removed support for local .rar sources</changelogtext>
+        <changelogtext>Improved handling for smart-update interval</changelogtext>
+        <changelogtext>Added cross-device-sync using Syncyomi</changelogtext>
     </changelogversion>
     <changelogversion versionName="0.0.2" changeDate="Jan 17,2024">
         <changelogtext>[b]Based on Mihon stable 0.16.0[/b]</changelogtext>

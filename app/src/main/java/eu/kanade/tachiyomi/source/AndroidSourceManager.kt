@@ -4,14 +4,11 @@ import android.content.Context
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.source.online.HttpSource
-import eu.kanade.tachiyomi.source.online.all.EHentai
 import eu.kanade.tachiyomi.source.online.all.MangaDex
 import eu.kanade.tachiyomi.source.online.all.MergedSource
 import exh.log.xLogD
 import exh.source.BlacklistedSources
 import exh.source.DelegatedHttpSource
-import exh.source.EH_SOURCE_ID
-import exh.source.EXH_SOURCE_ID
 import exh.source.EnhancedHttpSource
 import exh.source.MERGED_SOURCE_ID
 import exh.source.handleSourceLibrary
@@ -61,12 +58,7 @@ class AndroidSourceManager(
     init {
         scope.launch {
             extensionManager.installedExtensionsFlow
-                // SY -->
-                .combine(preferences.enableExhentai().changes()) { extensions, enableExhentai ->
-                    extensions to enableExhentai
-                }
-                // SY <--
-                .collectLatest { (extensions, enableExhentai) ->
+                .collectLatest { extensions ->
                     val mutableMap = ConcurrentHashMap<Long, Source>(
                         mapOf(
                             LocalSource.ID to LocalSource(

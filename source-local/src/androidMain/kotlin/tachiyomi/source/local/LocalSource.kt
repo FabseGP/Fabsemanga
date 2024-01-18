@@ -48,7 +48,6 @@ import java.io.File
 import java.io.InputStream
 import java.nio.charset.StandardCharsets
 import kotlin.time.Duration.Companion.days
-import com.github.junrar.Archive as JunrarArchive
 import tachiyomi.domain.source.model.Source as DomainSource
 
 actual class LocalSource(
@@ -287,15 +286,6 @@ actual class LocalSource(
                         }
                     }
                 }
-                is Format.Rar -> {
-                    JunrarArchive(tempFileManager.createTempFile(chapter)).use { rar ->
-                        rar.fileHeaders.firstOrNull { it.fileName == COMIC_INFO_FILE }?.let { comicInfoFile ->
-                            rar.getInputStream(comicInfoFile).buffered().use { stream ->
-                                return copyComicInfoFile(stream, folderPath)
-                            }
-                        }
-                    }
-                }
                 else -> {}
             }
         }
@@ -425,15 +415,6 @@ actual class LocalSource(
                             .find { !it.isDirectory && ImageUtil.isImage(it.fileName) { zip.getInputStream(it) } }
                         entry?.let { coverManager.update(manga, zip.getInputStream(it), encrypted) }
                         // SY <--
-                    }
-                }
-                is Format.Rar -> {
-                    JunrarArchive(tempFileManager.createTempFile(format.file)).use { archive ->
-                        val entry = archive.fileHeaders
-                            .sortedWith { f1, f2 -> f1.fileName.compareToCaseInsensitiveNaturalOrder(f2.fileName) }
-                            .find { !it.isDirectory && ImageUtil.isImage(it.fileName) { archive.getInputStream(it) } }
-
-                        entry?.let { coverManager.update(manga, archive.getInputStream(it)) }
                     }
                 }
                 is Format.Epub -> {

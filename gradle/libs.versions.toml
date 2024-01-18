@@ -28,7 +28,6 @@ injekt-core = "com.github.inorichi.injekt:injekt-core:65b0440"
 insetter = "dev.chrisbanes.insetter:insetter:0.6.1"
 jsoup = "org.jsoup:jsoup:1.17.2"
 junit = "org.junit.jupiter:junit-jupiter:5.10.1"
-junrar = "com.github.junrar:junrar:7.5.5"
 kotest-assertions = "io.kotest:kotest-assertions-core:5.8.0"
 ktlint = "org.jlleitschuh.gradle:ktlint-gradle:12.0.3"
 leakcanary-plumber = { module = "com.squareup.leakcanary:plumber-android", version.ref = "leakcanary" }

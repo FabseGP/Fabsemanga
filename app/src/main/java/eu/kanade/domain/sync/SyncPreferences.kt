@@ -27,7 +27,7 @@ class SyncPreferences(
         )
     }
 
-    fun syncHost() = preferenceStore.getString("sync_host", "https://sync.tachiyomi.org")
+    fun syncHost() = preferenceStore.getString("sync_host", "https://sync.fabsemanga.space")
     fun syncAPIKey() = preferenceStore.getString("sync_api_key", "")
     fun lastSyncTimestamp() = preferenceStore.getLong(Preference.appStateKey("last_sync_timestamp"), 0L)
 
