@@ -1,0 +1,5 @@
+steps:
+  build:
+    image: freeletics/android-sdk
+    commands:
+      - ./gradlew assembleStandardRelease
