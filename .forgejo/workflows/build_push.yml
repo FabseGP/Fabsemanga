@@ -14,7 +14,7 @@ jobs:
     name: Build release app
     runs-on: docker
     container:
-      image: docker.io/redemonbr/android-sdk:node-alpine-next
+      image: docker.io/redemonbr/android-sdk:node-next
     steps:
       - name: Clone repo
         uses: https://github.com/actions/checkout@v4
