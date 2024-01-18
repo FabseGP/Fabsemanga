@@ -1,3 +1,7 @@
+| Preview Builds | Release Builds |
+|-------|----------|----------|
+| [![Preview](https://ci.codeberg.org/api/badges/12999/status.svg)](https://codeberg.org/fabseman/fabsemanga/releases) | [![stable release](https://ci.codeberg.org/api/badges/12999/status.svg)](https://codeberg.org/fabseman/fabsemanga/releases) |
+
 # ![app icon](./.forgejo/readme-images/app-icon.png)Fabsemanga
 Fabsemanga is a free and open source manga reader for Android 6.0 and above. Based on the og manga lord and its fork, namely [TachiyomiSY](https://github.com/jobobby04/TachiyomiSY).
 
