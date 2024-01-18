@@ -7,7 +7,6 @@ import eu.kanade.domain.manga.interactor.UpdateManga
 import eu.kanade.domain.manga.model.toSManga
 import eu.kanade.domain.source.service.SourcePreferences
 import eu.kanade.tachiyomi.source.online.UrlImportableSource
-import eu.kanade.tachiyomi.source.online.all.EHentai
 import exh.log.xLogStack
 import exh.source.getMainSource
 import tachiyomi.core.i18n.stringResource
@@ -152,11 +151,7 @@ class GalleryAdder(
             // Fetch and copy chapters
             try {
                 val chapterList = retry(retry) {
-                    if (source is EHentai) {
-                        source.getChapterList(manga.toSManga(), throttleFunc)
-                    } else {
-                        source.getChapterList(manga.toSManga())
-                    }
+                    source.getChapterList(manga.toSManga())
                 }
 
                 if (chapterList.isNotEmpty()) {
@@ -180,10 +175,6 @@ class GalleryAdder(
         } catch (e: Exception) {
             logger.w(context.stringResource(SYMR.strings.gallery_adder_could_not_add_gallery, url), e)
 
-            if (e is EHentai.GalleryNotFoundException) {
-                return GalleryAddEvent.Fail.NotFound(url, context)
-            }
-
             return GalleryAddEvent.Fail.Error(
                 url,
                 ((e.message ?: "Unknown error!") + " (Gallery: $url)").trim(),
@@ -200,9 +191,6 @@ class GalleryAdder(
                 result = block()
                 break
             } catch (e: Exception) {
-                if (e is EHentai.GalleryNotFoundException) {
-                    throw e
-                }
                 lastError = e
             }
         }

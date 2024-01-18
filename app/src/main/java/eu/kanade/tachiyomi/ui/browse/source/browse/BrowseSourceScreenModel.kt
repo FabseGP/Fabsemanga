@@ -121,7 +121,6 @@ open class BrowseSourceScreenModel(
     val source = sourceManager.getOrStub(sourceId)
 
     // SY -->
-    val ehentaiBrowseDisplayMode by unsortedPreferences.enhancedEHentaiView().asState(screenModelScope)
 
     val startExpanded by uiPreferences.expandFilters().asState(screenModelScope)
 

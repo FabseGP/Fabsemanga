@@ -23,7 +23,6 @@ import eu.kanade.tachiyomi.network.JavaScriptEngine
 import eu.kanade.tachiyomi.network.NetworkHelper
 import eu.kanade.tachiyomi.source.AndroidSourceManager
 import eu.kanade.tachiyomi.util.storage.CbzCrypto
-import exh.eh.EHentaiUpdateHelper
 import io.requery.android.database.sqlite.RequerySQLiteOpenHelperFactory
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.protobuf.ProtoBuf
@@ -53,9 +52,7 @@ import uy.kohesive.injekt.api.addSingletonFactory
 import uy.kohesive.injekt.api.get
 import uy.kohesive.injekt.injectLazy
 
-// SY -->
-private const val LEGACY_DATABASE_NAME = "tachiyomi.db"
-// SY <--
+private const val LEGACY_DATABASE_NAME = "fabsemanga.db"
 
 class AppModule(val app: Application) : InjektModule {
     // SY -->
@@ -166,8 +163,6 @@ class AppModule(val app: Application) : InjektModule {
         addSingletonFactory { StorageManager(app, get()) }
 
         // SY -->
-        addSingletonFactory { EHentaiUpdateHelper(app) }
-
         addSingletonFactory { PagePreviewCache(app) }
         // SY <--
 

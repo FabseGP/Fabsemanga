@@ -80,7 +80,6 @@ import eu.kanade.tachiyomi.util.system.isPreviewBuildType
 import eu.kanade.tachiyomi.util.view.setComposeContent
 import exh.EXHMigrations
 import exh.debug.DebugToggles
-import exh.eh.EHentaiUpdateWorker
 import exh.log.DebugModeOverlay
 import exh.source.BlacklistedSources
 import exh.source.EH_SOURCE_ID
@@ -246,20 +245,6 @@ class MainActivity : BaseActivity() {
 
                         // Reset Incognito Mode on relaunch
                         preferences.incognitoMode().set(false)
-
-                        // SY -->
-                        initWhenIdle {
-                            // Upload settings
-                            if (unsortedPreferences.enableExhentai().get() &&
-                                unsortedPreferences.exhShowSettingsUploadWarning().get()
-                            ) {
-                                runExhConfigureDialog = true
-                            }
-                            // Scheduler uploader job if required
-
-                            EHentaiUpdateWorker.scheduleBackground(this@MainActivity)
-                        }
-                        // SY <--
                     }
                 }
 
@@ -344,12 +329,6 @@ class MainActivity : BaseActivity() {
             }
         }
 
-        // SY -->
-        if (!unsortedPreferences.isHentaiEnabled().get()) {
-            BlacklistedSources.HIDDEN_SOURCES += EH_SOURCE_ID
-            BlacklistedSources.HIDDEN_SOURCES += EXH_SOURCE_ID
-        }
-        // SY -->
     }
 
     override fun onProvideAssistContent(outContent: AssistContent) {

@@ -15,7 +15,7 @@ android {
     namespace = "eu.kanade.tachiyomi"
 
     defaultConfig {
-        applicationId = "eu.kanade.fabsemanga.psyduck"
+        applicationId = "app.fabsemanga"
 
         versionCode = 2
         versionName = "0.0.3"
@@ -29,7 +29,6 @@ android {
             abiFilters += SUPPORTED_ABIS
         }
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        resourceConfigurations.addAll(listOf("en"))
     }
 
     splits {
@@ -47,17 +46,21 @@ android {
             applicationIdSuffix = ".debug"
             isPseudoLocalesEnabled = true
         }
-        create("releaseTest") {
-            applicationIdSuffix = ".rt"
-            isMinifyEnabled = true
-            isShrinkResources = true
-            setProguardFiles(listOf(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"))
-            matchingFallbacks.add("release")
-        }
         named("release") {
             isMinifyEnabled = true
             isShrinkResources = true
-            setProguardFiles(listOf(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"))
+            proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
+        }
+        create("preview") {
+            initWith(getByName("release"))
+            buildConfigField("boolean", "PREVIEW", "true")
+
+            signingConfig = signingConfigs.getByName("debug")
+            matchingFallbacks.add("release")
+            val debugType = getByName("debug")
+            versionNameSuffix = debugType.versionNameSuffix
+            applicationIdSuffix = debugType.applicationIdSuffix
+            proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
         }
         create("benchmark") {
             initWith(getByName("release"))
@@ -72,6 +75,7 @@ android {
     }
 
     sourceSets {
+        getByName("preview").res.srcDirs("src/debug/res")
         getByName("benchmark").res.srcDirs("src/debug/res")
     }
 
@@ -165,9 +169,7 @@ dependencies {
     implementation(androidx.paging.compose)
 
     implementation(libs.bundles.sqlite)
-    // SY -->
     implementation(libs.sqlcipher)
-    // SY <--
 
     implementation(kotlinx.reflect)
     implementation(kotlinx.immutables)

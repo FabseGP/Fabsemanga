@@ -86,10 +86,6 @@ private fun isWebtoonTag(tag: String): Boolean {
         tag.contains("webtoon", true)
 }
 
-/*private fun isMangaSource(sourceName: String): Boolean {
-    return
-}*/
-
 private fun isManhwaSource(sourceName: String): Boolean {
     return sourceName.contains("hiperdex", true) ||
         sourceName.contains("hmanhwa", true) ||
@@ -112,7 +108,6 @@ private fun isManhwaSource(sourceName: String): Boolean {
 private fun isWebtoonSource(sourceName: String): Boolean {
     return sourceName.contains("mangatoon", true) ||
         sourceName.contains("manmanga", true) ||
-        // sourceName.contains("tapas", true) ||
         sourceName.contains("toomics", true) ||
         sourceName.contains("webcomics", true) ||
         sourceName.contains("webtoons", true) ||

@@ -68,7 +68,6 @@ import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.getNameForMangaInfo
 import eu.kanade.tachiyomi.source.online.MetadataSource
-import eu.kanade.tachiyomi.source.online.all.EHentai
 import eu.kanade.tachiyomi.source.online.all.MangaDex
 import eu.kanade.tachiyomi.ui.manga.ChapterList
 import eu.kanade.tachiyomi.ui.manga.MangaScreenModel
@@ -78,7 +77,6 @@ import exh.metadata.MetadataUtil
 import exh.source.MERGED_SOURCE_ID
 import exh.source.getMainSource
 import exh.source.isEhBasedManga
-import exh.ui.metadata.adapters.EHentaiDescription
 import exh.ui.metadata.adapters.MangaDexDescription
 import tachiyomi.domain.chapter.model.Chapter
 import tachiyomi.domain.chapter.service.missingChaptersCount
@@ -1048,9 +1046,6 @@ fun metadataDescription(source: Source): MetadataDescriptionComposable? {
     val metadataSource = remember(source.id) { source.getMainSource<MetadataSource<*, *>>() }
     return remember(metadataSource) {
         when (metadataSource) {
-            is EHentai -> { state, openMetadataViewer, search ->
-                EHentaiDescription(state, openMetadataViewer, search)
-            }
             is MangaDex -> { state, openMetadataViewer, _ ->
                 MangaDexDescription(state, openMetadataViewer)
             }

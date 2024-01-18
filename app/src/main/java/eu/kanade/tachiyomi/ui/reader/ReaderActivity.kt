@@ -692,14 +692,6 @@ class ReaderActivity : BaseActivity() {
                     return@forEachIndexed
                 }
 
-                // If we are using EHentai/ExHentai, get a new image URL
-                viewModel.manga?.let { m ->
-                    val src = sourceManager.get(m.source)
-                    if (src?.isEhBasedSource() == true) {
-                        page.imageUrl = null
-                    }
-                }
-
                 val loader = page.chapter.pageLoader
                 if (page.index == exhCurrentpage()?.index && loader is HttpPageLoader) {
                     loader.boostPage(page)

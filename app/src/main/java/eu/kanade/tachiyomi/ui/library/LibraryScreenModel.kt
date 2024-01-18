@@ -242,31 +242,6 @@ class LibraryScreenModel(
                 }
             }
             .launchIn(screenModelScope)
-
-        // SY -->
-        combine(
-            unsortedPreferences.isHentaiEnabled().changes(),
-            sourcePreferences.disabledSources().changes(),
-            unsortedPreferences.enableExhentai().changes(),
-        ) { isHentaiEnabled, disabledSources, enableExhentai ->
-            isHentaiEnabled && (EH_SOURCE_ID.toString() !in disabledSources || enableExhentai)
-        }
-            .distinctUntilChanged()
-            .onEach {
-                mutableState.update { state ->
-                    state.copy(showSyncExh = it)
-                }
-            }
-            .launchIn(screenModelScope)
-
-        libraryPreferences.groupLibraryBy().changes()
-            .onEach {
-                mutableState.update { state ->
-                    state.copy(groupType = it)
-                }
-            }
-            .launchIn(screenModelScope)
-        // SY <--
     }
 
     /**
