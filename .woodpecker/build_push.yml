@@ -1,5 +1,12 @@
 steps:
   build:
-    image: mobiledevops/android-sdk-image:latest
+    image: redemonbr/android-sdk:alpine-next
+    environment:
+      - ASDK_ACCEPT_LICENSES=yes
+      - ASDK_ACCEPT_LICENSES_SILENT=yes
     commands:
       - ./gradlew assembleStandardRelease
+  image: redemonbr/android-sdk:alpine-stable
+  variables:
+    ASDK_ACCEPT_LICENSES: "yes"
+    ASDK_ACCEPT_LICENSES_SILENT: "yes"
