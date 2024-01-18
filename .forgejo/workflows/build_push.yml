@@ -28,7 +28,7 @@ jobs:
         with:
           gradle-version: release-candidate
       - name: Build app
-        run: ./gradlew assembleStandardRelease
+        run: gradle assembleStandardRelease
       - name: Sign APK
         uses: https://github.com/r0adkll/sign-android-release@v1
         with:
