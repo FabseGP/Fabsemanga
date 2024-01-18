@@ -1619,7 +1619,7 @@ class MangaScreenModel(
             val excludedScanlators: ImmutableSet<String>,
             val trackItems: List<TrackItem> = emptyList(),
             val isRefreshingData: Boolean = false,
-            val dialog: MangaScreenModel.Dialog? = null,
+            val dialog: Dialog? = null,
             val hasPromptedToAddBefore: Boolean = false,
             // SY -->
             val meta: RaisedSearchMetadata?,

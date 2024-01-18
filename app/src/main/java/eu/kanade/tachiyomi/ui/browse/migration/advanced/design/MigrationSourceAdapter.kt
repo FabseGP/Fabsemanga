@@ -6,7 +6,7 @@ import tachiyomi.domain.source.service.SourceManager
 import uy.kohesive.injekt.injectLazy
 
 class MigrationSourceAdapter(
-    listener: FlexibleAdapter.OnItemClickListener,
+    listener: OnItemClickListener,
 ) : FlexibleAdapter<MigrationSourceItem>(
     null,
     listener,

@@ -48,9 +48,7 @@ class TrackSearch : Track {
 
         if (manga_id != other.manga_id) return false
         if (tracker_id != other.tracker_id) return false
-        if (remote_id != other.remote_id) return false
-
-        return true
+        return remote_id == other.remote_id
     }
 
     override fun hashCode(): Int {

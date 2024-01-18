@@ -14,7 +14,6 @@ import eu.kanade.tachiyomi.data.cache.PagePreviewCache
 import eu.kanade.tachiyomi.data.library.LibraryUpdateJob
 import eu.kanade.tachiyomi.data.track.TrackerManager
 import eu.kanade.tachiyomi.network.NetworkPreferences
-import eu.kanade.tachiyomi.network.PREF_DOH_CLOUDFLARE
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.reader.setting.ReaderOrientation
 import eu.kanade.tachiyomi.ui.reader.setting.ReaderPreferences
@@ -229,7 +228,6 @@ object EXHMigrations {
                     val wasDohEnabled = prefs.getBoolean("enable_doh", false)
                     if (wasDohEnabled) {
                         prefs.edit {
-                            putInt(networkPreferences.dohProvider().key(), PREF_DOH_CLOUDFLARE)
                             remove("enable_doh")
                         }
                     }

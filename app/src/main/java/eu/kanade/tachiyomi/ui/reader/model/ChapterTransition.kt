@@ -19,8 +19,7 @@ sealed class ChapterTransition : ReaderItem {
         if (this === other) return true
         if (other !is ChapterTransition) return false
         if (from == other.from && to == other.to) return true
-        if (from == other.to && to == other.from) return true
-        return false
+        return from == other.to && to == other.from
     }
 
     override fun hashCode(): Int {

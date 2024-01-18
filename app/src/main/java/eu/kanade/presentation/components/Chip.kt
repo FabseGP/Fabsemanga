@@ -473,9 +473,7 @@ class ChipColors internal constructor(
         if (disabledContainerColor != other.disabledContainerColor) return false
         if (disabledLabelColor != other.disabledLabelColor) return false
         if (disabledLeadingIconContentColor != other.disabledLeadingIconContentColor) return false
-        if (disabledTrailingIconContentColor != other.disabledTrailingIconContentColor) return false
-
-        return true
+        return disabledTrailingIconContentColor == other.disabledTrailingIconContentColor
     }
 
     override fun hashCode(): Int {
@@ -520,9 +518,7 @@ class ChipBorder internal constructor(
 
         if (borderColor != other.borderColor) return false
         if (disabledBorderColor != other.disabledBorderColor) return false
-        if (borderWidth != other.borderWidth) return false
-
-        return true
+        return borderWidth == other.borderWidth
     }
 
     override fun hashCode(): Int {
@@ -677,9 +673,7 @@ class ChipElevation internal constructor(
         if (pressedElevation != other.pressedElevation) return false
         if (focusedElevation != other.focusedElevation) return false
         if (hoveredElevation != other.hoveredElevation) return false
-        if (disabledElevation != other.disabledElevation) return false
-
-        return true
+        return disabledElevation == other.disabledElevation
     }
 
     override fun hashCode(): Int {

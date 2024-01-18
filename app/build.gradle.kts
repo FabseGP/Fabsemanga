@@ -29,6 +29,7 @@ android {
             abiFilters += SUPPORTED_ABIS
         }
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        resourceConfigurations.addAll(listOf("en"))
     }
 
     splits {

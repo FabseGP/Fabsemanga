@@ -10,9 +10,7 @@ open /* SY <-- */ class MangasPage(open val mangas: List<SManga>, open val hasNe
         if (other !is MangasPage) return false
 
         if (mangas != other.mangas) return false
-        if (hasNextPage != other.hasNextPage) return false
-
-        return true
+        return hasNextPage == other.hasNextPage
     }
 
     override fun hashCode(): Int {
@@ -57,9 +55,7 @@ class MetadataMangasPage(
         if (mangas != other.mangas) return false
         if (hasNextPage != other.hasNextPage) return false
         if (mangasMetadata != other.mangasMetadata) return false
-        if (nextKey != other.nextKey) return false
-
-        return true
+        return nextKey == other.nextKey
     }
 
     override fun hashCode(): Int {

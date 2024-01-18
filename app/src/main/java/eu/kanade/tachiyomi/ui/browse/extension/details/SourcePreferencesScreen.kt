@@ -130,7 +130,7 @@ class SourcePreferencesFragment : PreferenceFragmentCompat() {
         // SY -->
         val source = Injekt.get<SourceManager>()
             .getOrStub(sourceId)
-            ?.let { source ->
+            .let { source ->
                 if (source is EnhancedHttpSource) {
                     if (source.enhancedSource is ConfigurableSource) {
                         source.source()
@@ -141,7 +141,6 @@ class SourcePreferencesFragment : PreferenceFragmentCompat() {
                     source
                 }
             }
-            ?: throw NullPointerException("source = null, SOURCE_ID = $SOURCE_ID")
         // SY <--
         val sourceScreen = preferenceManager.createPreferenceScreen(requireContext())
 

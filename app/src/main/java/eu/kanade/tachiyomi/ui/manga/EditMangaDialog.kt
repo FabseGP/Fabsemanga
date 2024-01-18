@@ -226,7 +226,7 @@ private fun ChipGroup.setChips(items: List<String>, scope: CoroutineScope) {
     }
 
     val addTagChip = Chip(context).apply {
-        setText(SYMR.strings.add_tag.getString(context))
+        text = SYMR.strings.add_tag.getString(context)
 
         chipIcon = ContextCompat.getDrawable(context, R.drawable.ic_add_24dp)?.apply {
             isChipIconVisible = true

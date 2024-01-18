@@ -42,18 +42,9 @@ import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.library.LibraryUpdateJob
 import eu.kanade.tachiyomi.network.NetworkHelper
 import eu.kanade.tachiyomi.network.NetworkPreferences
-import eu.kanade.tachiyomi.network.PREF_DOH_360
 import eu.kanade.tachiyomi.network.PREF_DOH_ADGUARD
-import eu.kanade.tachiyomi.network.PREF_DOH_ALIDNS
-import eu.kanade.tachiyomi.network.PREF_DOH_CLOUDFLARE
-import eu.kanade.tachiyomi.network.PREF_DOH_CONTROLD
-import eu.kanade.tachiyomi.network.PREF_DOH_DNSPOD
-import eu.kanade.tachiyomi.network.PREF_DOH_GOOGLE
 import eu.kanade.tachiyomi.network.PREF_DOH_MULLVAD
-import eu.kanade.tachiyomi.network.PREF_DOH_NJALLA
-import eu.kanade.tachiyomi.network.PREF_DOH_QUAD101
 import eu.kanade.tachiyomi.network.PREF_DOH_QUAD9
-import eu.kanade.tachiyomi.network.PREF_DOH_SHECAN
 import eu.kanade.tachiyomi.source.AndroidSourceManager
 import eu.kanade.tachiyomi.ui.more.OnboardingScreen
 import eu.kanade.tachiyomi.util.CrashLogUtil
@@ -116,12 +107,6 @@ object SettingsAdvancedScreen : SearchableSettings {
         return buildList {
             addAll(
                 listOf(
-                    /* SY --> Preference.PreferenceItem.SwitchPreference(
-                        pref = basePreferences.acraEnabled(),
-                        title = stringResource(MR.strings.pref_enable_acra),
-                        subtitle = stringResource(MR.strings.pref_acra_summary),
-                        enabled = isPreviewBuildType || isReleaseBuildType,
-                    ), SY <-- */
                     Preference.PreferenceItem.TextPreference(
                         title = stringResource(MR.strings.pref_dump_crash_logs),
                         subtitle = stringResource(MR.strings.pref_dump_crash_logs_summary),
@@ -131,15 +116,6 @@ object SettingsAdvancedScreen : SearchableSettings {
                             }
                         },
                     ),
-                    /* SY --> Preference.PreferenceItem.SwitchPreference(
-                        pref = networkPreferences.verboseLogging(),
-                        title = stringResource(MR.strings.pref_verbose_logging),
-                        subtitle = stringResource(MR.strings.pref_verbose_logging_summary),
-                        onValueChanged = {
-                            context.toast(MR.strings.requires_app_restart)
-                            true
-                        },
-                    ), SY <-- */
                     Preference.PreferenceItem.TextPreference(
                         title = stringResource(MR.strings.pref_debug_info),
                         onClick = { navigator.push(DebugInfoScreen()) },
@@ -170,11 +146,8 @@ object SettingsAdvancedScreen : SearchableSettings {
                     getNetworkGroup(networkPreferences = networkPreferences),
                     getLibraryGroup(),
                     getExtensionsGroup(basePreferences = basePreferences),
-                    // SY -->
-                    // getDownloaderGroup(),
                     getDataSaverGroup(),
                     getDeveloperToolsGroup(),
-                    // SY <--
                 ),
             )
         }
@@ -291,18 +264,9 @@ object SettingsAdvancedScreen : SearchableSettings {
                     title = stringResource(MR.strings.pref_dns_over_https),
                     entries = persistentMapOf(
                         -1 to stringResource(MR.strings.disabled),
-                        PREF_DOH_CLOUDFLARE to "Cloudflare",
-                        PREF_DOH_GOOGLE to "Google",
                         PREF_DOH_ADGUARD to "AdGuard",
                         PREF_DOH_QUAD9 to "Quad9",
-                        PREF_DOH_ALIDNS to "AliDNS",
-                        PREF_DOH_DNSPOD to "DNSPod",
-                        PREF_DOH_360 to "360",
-                        PREF_DOH_QUAD101 to "Quad 101",
                         PREF_DOH_MULLVAD to "Mullvad",
-                        PREF_DOH_CONTROLD to "Control D",
-                        PREF_DOH_NJALLA to "Njalla",
-                        PREF_DOH_SHECAN to "Shecan",
                     ),
                     onValueChanged = {
                         context.toast(MR.strings.requires_app_restart)
