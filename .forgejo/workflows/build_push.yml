@@ -27,7 +27,10 @@ jobs:
           distribution: adopt 
       - name: Set up Android SDK
         uses: https://github.com/amyu/setup-android@v4
-      - name: Build app and run unit tests
+        with:
+          build-tools-version: 34.0.0
+          ndk-version: 25.1.8937393
+      - name: Build app
         uses: https://github.com/gradle/gradle-build-action@v2
         with:
           gradle-version: release-candidate
