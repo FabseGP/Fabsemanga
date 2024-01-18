@@ -1,5 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+import java.nio.file.Files
+
 plugins {
     id("com.android.application")
     id("com.mikepenz.aboutlibraries.plugin")
