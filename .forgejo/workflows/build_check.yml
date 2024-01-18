@@ -11,19 +11,27 @@ jobs:
     name: Validate Gradle Wrapper
     runs-on: docker
     container:
-      image: ghcr.io/catthehacker/ubuntu:runner-latest
+      image: redemonbr/android-sdk:node-next
+      variables:
+        ASDK_ACCEPT_LICENSES: "yes"
+        ASDK_ACCEPT_LICENSES_SILENT: "yes"
     steps:
       - name: Clone repo
-        uses: actions/checkout@v4
-      - name: Validate Gradle Wrapper
-        uses: https://github.com/gradle/wrapper-validation-action@v1
+        uses: https://github.com/actions/checkout@v4
+      - name: Setup Gradle
+        uses: https://github.com/gradle/gradle-build-action@v2
+        with:
+          gradle-version: release-candidate
 
   build:
     name: Build app
     needs: check_wrapper
     runs-on: docker
     container:
-      image: ghcr.io/catthehacker/ubuntu:runner-latest
+      image: redemonbr/android-sdk:node-next
+      variables:
+        ASDK_ACCEPT_LICENSES: "yes"
+        ASDK_ACCEPT_LICENSES_SILENT: "yes"
     steps:
       - name: Clone repo
         uses: https://github.com/actions/checkout@v4
@@ -32,18 +40,10 @@ jobs:
         with:
           java-version: 17
           distribution: adopt
-      - name: Set up Android SDK
-        uses: https://github.com/amyu/setup-android@v4
-        with:
-          build-tools-version: 34.0.0
-          ndk-version: 25.1.8937393
       - name: Build app
-        uses: https://github.com/gradle/gradle-command-action@v2
-        with:
-          gradle-version: release-candidate
-          arguments: assembleDevDebug
+        run: gradle assembleDevDebug
       - name: Upload APK
         uses: https://github.com/actions/upload-artifact@v4
         with:
-          name: Fabsemanga-${{ github.sha }}.apk
+          name: fabsemanga-${{ github.sha }}.apk
           path: app/build/outputs/apk/dev/debug/app-dev-debug.apk

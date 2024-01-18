@@ -10,7 +10,10 @@ jobs:
   moderate:
     runs-on: docker
     container:
-      image: ghcr.io/catthehacker/ubuntu:runner-latest
+      image: redemonbr/android-sdk:node-next
+      variables:
+        ASDK_ACCEPT_LICENSES: "yes"
+        ASDK_ACCEPT_LICENSES_SILENT: "yes"
     steps:
       - name: Moderate issues
         uses: https://github.com/tachiyomiorg/issue-moderator-action@v2

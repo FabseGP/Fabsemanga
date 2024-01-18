@@ -3,14 +3,15 @@ name: Lock threads
 on:
   schedule:
     - cron: '0 0 * * *'
-  workflow_dispatch:
-    inputs:
 
 jobs:
   lock:
     runs-on: docker
     container:
-      image: ghcr.io/catthehacker/ubuntu:runner-latest
+      image: redemonbr/android-sdk:node-next
+      variables:
+        ASDK_ACCEPT_LICENSES: "yes"
+        ASDK_ACCEPT_LICENSES_SILENT: "yes"
     steps:
       - name: Lock Threads after a period of inactivity
         uses: https://github.com/dessant/lock-threads@v5

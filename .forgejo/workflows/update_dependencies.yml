@@ -3,14 +3,15 @@ name: Update dependencies
 on:
   schedule:
     - cron: '00 6 1 * *'
-  workflow_dispatch:
-    inputs:
 
 jobs:
   update-dependencies:
     runs-on: docker
     container:
-      image: ghcr.io/catthehacker/ubuntu:runner-latest
+      image: redemonbr/android-sdk:node-next
+      variables:
+        ASDK_ACCEPT_LICENSES: "yes"
+        ASDK_ACCEPT_LICENSES_SILENT: "yes"
     steps:
       - uses: https://github.com/actions/checkout@v4
       - name: Set up JDK
@@ -18,10 +19,12 @@ jobs:
         with:
           java-version: 17
           distribution: adopt
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+      - name: Setup Gradle
+        uses: https://github.com/gradle/gradle-build-action@v2
+        with:
+          gradle-version: release-candidate
       - name: Perform dependencies resolution and update
-        run: ./gradlew versionCatalogUpdate
+        run: gradle versionCatalogUpdate
       - name: Create Pull Request
         uses: https://github.com/peter-evans/create-pull-request@v5
         with:
