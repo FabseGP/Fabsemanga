@@ -24,7 +24,6 @@ class RecommendsScreen(val mangaId: Long, val sourceId: Long) : Screen() {
     @Composable
     override fun Content() {
         val screenModel = rememberScreenModel { RecommendsScreenModel(mangaId, sourceId) }
-        val state by screenModel.state.collectAsState()
         val navigator = LocalNavigator.currentOrThrow
 
         val onMangaClick: (Manga) -> Unit = { manga ->

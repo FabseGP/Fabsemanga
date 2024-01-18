@@ -25,7 +25,6 @@ class MangaDexSimilarScreen(val mangaId: Long, val sourceId: Long) : Screen() {
     @Composable
     override fun Content() {
         val screenModel = rememberScreenModel { MangaDexSimilarScreenModel(mangaId, sourceId) }
-        val state by screenModel.state.collectAsState()
         val navigator = LocalNavigator.currentOrThrow
 
         val onMangaClick: (Manga) -> Unit = {
