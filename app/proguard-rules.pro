@@ -2,6 +2,7 @@
 
 -keep,allowoptimization class eu.kanade.**
 -keep,allowoptimization class tachiyomi.**
+-keep,allowoptimization class fabsemanga.**
 
 # Keep common dependencies used in extensions
 -keep,allowoptimization class androidx.preference.** { public protected *; }
@@ -55,6 +56,14 @@
     *** Companion;
 }
 -keepclasseswithmembers class kotlinx.serialization.json.** {
+    kotlinx.serialization.KSerializer serializer(...);
+}
+
+-keep,includedescriptorclasses class fabsemanga.**$$serializer { *; }
+-keepclassmembers class dev.yokai.** {
+    *** Companion;
+}
+-keepclasseswithmembers class fabsemanga.** {
     kotlinx.serialization.KSerializer serializer(...);
 }
 

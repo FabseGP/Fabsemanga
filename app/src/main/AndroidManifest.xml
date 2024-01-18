@@ -148,7 +148,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="tachiyomi" />
+                <data android:scheme="fabsemanga" />
 
                 <data android:host="anilist-auth" />
                 <data android:host="myanimelist-auth" />

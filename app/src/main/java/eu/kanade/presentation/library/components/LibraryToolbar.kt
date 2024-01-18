@@ -41,6 +41,7 @@ fun LibraryToolbar(
     // SY -->
     onClickSyncExh: (() -> Unit)?,
     // SY <--
+    onClickSyncNow: () -> Unit,
     searchQuery: String?,
     onSearchQueryChange: (String?) -> Unit,
     scrollBehavior: TopAppBarScrollBehavior?,
@@ -63,6 +64,7 @@ fun LibraryToolbar(
         // SY -->
         onClickSyncExh = onClickSyncExh,
         // SY <--
+        onClickSyncNow = onClickSyncNow,
         scrollBehavior = scrollBehavior,
     )
 }
@@ -80,6 +82,7 @@ private fun LibraryRegularToolbar(
     // SY -->
     onClickSyncExh: (() -> Unit)?,
     // SY <--
+    onClickSyncNow: () -> Unit,
     scrollBehavior: TopAppBarScrollBehavior?,
 ) {
     val pillAlpha = if (isSystemInDarkTheme()) 0.12f else 0.08f
@@ -124,6 +127,10 @@ private fun LibraryRegularToolbar(
                     AppBar.OverflowAction(
                         title = stringResource(MR.strings.action_open_random_manga),
                         onClick = onClickOpenRandomManga,
+                    ),
+                    AppBar.OverflowAction(
+                        title = stringResource(MR.strings.sync_library),
+                        onClick = onClickSyncNow,
                     ),
 
                 ).builder().apply {

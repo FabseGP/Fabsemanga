@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "eu.kanade.fabsemanga.psyduck",
+  "applicationId": "app.fabsemanga",
   "variantName": "standardRelease",
   "elements": [
     {

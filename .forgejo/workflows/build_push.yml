@@ -48,15 +48,15 @@ jobs:
           set -e
 
           mv app/build/outputs/apk/standard/release/app-standard-universal-release-unsigned-signed.apk Fabsemanga.apk
-          sha=`sha256sum Fabsemanga.apk | awk '{ print $1 }'`
+          sha=`sha256sum fabsemanga.apk | awk '{ print $1 }'`
           echo "APK_UNIVERSAL_SHA=$sha" >> $GITHUB_ENV
 
           cp app/build/outputs/apk/standard/release/app-standard-arm64-v8a-release-unsigned-signed.apk Fabsemanga-arm64-v8a.apk
-          sha=`sha256sum Fabsemanga-arm64-v8a.apk | awk '{ print $1 }'`
+          sha=`sha256sum fabsemanga-arm64-v8a.apk | awk '{ print $1 }'`
           echo "APK_ARM64_V8A_SHA=$sha" >> $GITHUB_ENV
 
           cp app/build/outputs/apk/standard/release/app-standard-armeabi-v7a-release-unsigned-signed.apk Fabsemanga-armeabi-v7a.apk
-          sha=`sha256sum Fabsemanga-armeabi-v7a.apk | awk '{ print $1 }'`
+          sha=`sha256sum fabsemanga-armeabi-v7a.apk | awk '{ print $1 }'`
           echo "APK_ARMEABI_V7A_SHA=$sha" >> $GITHUB_ENV          
       - name: Create release
         uses: https://github.com/softprops/action-gh-release@v1
@@ -74,10 +74,8 @@ jobs:
             | arm64-v8a | ${{ env.APK_ARM64_V8A_SHA }} |
             | armeabi-v7a | ${{ env.APK_ARMEABI_V7A_SHA }} |            
           files: |
-            Fabsemanga.apk
-            Fabsemanga-arm64-v8a.apk
-            Fabsemanga-armeabi-v7a.apk            
+            fabsemanga.apk
+            fabsemanga-arm64-v8a.apk
+            fabsemanga-armeabi-v7a.apk            
           draft: true
           prerelease: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

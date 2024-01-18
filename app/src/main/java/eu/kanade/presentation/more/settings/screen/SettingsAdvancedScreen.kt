@@ -80,6 +80,7 @@ import tachiyomi.domain.chapter.interactor.GetChaptersByMangaId
 import tachiyomi.domain.manga.interactor.GetAllManga
 import tachiyomi.domain.manga.interactor.ResetViewerFlags
 import tachiyomi.domain.source.service.SourceManager
+import tachiyomi.domain.sync.SyncPreferences
 import tachiyomi.i18n.MR
 import tachiyomi.i18n.sy.SYMR
 import tachiyomi.presentation.core.components.LabeledCheckbox
@@ -146,6 +147,7 @@ object SettingsAdvancedScreen : SearchableSettings {
                     getNetworkGroup(networkPreferences = networkPreferences),
                     getLibraryGroup(),
                     getExtensionsGroup(basePreferences = basePreferences),
+                    getSyncGroup(),
                     getDataSaverGroup(),
                     getDeveloperToolsGroup(),
                 ),
@@ -530,6 +532,25 @@ object SettingsAdvancedScreen : SearchableSettings {
                     title = stringResource(SYMR.strings.clean_up_downloaded_chapters),
                     subtitle = stringResource(SYMR.strings.delete_unused_chapters),
                     onClick = { dialogOpen = true },
+                ),
+            ),
+        )
+    }
+
+   @Composable
+    private fun getSyncGroup(): Preference.PreferenceGroup {
+        val context = LocalContext.current
+        val syncPreferences = remember { Injekt.get<SyncPreferences>() }
+        return Preference.PreferenceGroup(
+            title = stringResource(MR.strings.label_sync),
+            preferenceItems = persistentListOf(
+                Preference.PreferenceItem.TextPreference(
+                    title = stringResource(MR.strings.pref_reset_sync_timestamp),
+                    subtitle = stringResource(MR.strings.pref_reset_sync_timestamp_subtitle),
+                    onClick = {
+                        syncPreferences.lastSyncTimestamp().set(0)
+                        context.toast(MR.strings.success_reset_sync_timestamp)
+                    },
                 ),
             ),
         )

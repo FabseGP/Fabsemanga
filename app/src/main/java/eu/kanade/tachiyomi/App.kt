@@ -42,6 +42,7 @@ import eu.kanade.tachiyomi.data.coil.PagePreviewFetcher
 import eu.kanade.tachiyomi.data.coil.PagePreviewKeyer
 import eu.kanade.tachiyomi.data.coil.TachiyomiImageDecoder
 import eu.kanade.tachiyomi.data.notification.Notifications
+import eu.kanade.tachiyomi.data.sync.SyncDataJob
 import eu.kanade.tachiyomi.di.AppModule
 import eu.kanade.tachiyomi.di.PreferenceModule
 import eu.kanade.tachiyomi.di.SYPreferenceModule
@@ -68,6 +69,7 @@ import logcat.LogcatLogger
 import org.conscrypt.Conscrypt
 import tachiyomi.core.i18n.stringResource
 import tachiyomi.core.util.system.logcat
+import tachiyomi.domain.sync.SyncPreferences
 import tachiyomi.domain.storage.service.StorageManager
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.widget.WidgetManager
@@ -153,6 +155,14 @@ class App : Application(), DefaultLifecycleObserver, ImageLoaderFactory {
             init(ProcessLifecycleOwner.get().lifecycleScope)
         }
 
+        val syncPreferences: SyncPreferences by injectLazy()
+        val syncFlags = syncPreferences.syncFlags().get()
+        if (syncPreferences.isSyncEnabled() && syncFlags and
+            SyncPreferences.Flags.SYNC_ON_APP_START == SyncPreferences.Flags.SYNC_ON_APP_START
+        ) {
+            SyncDataJob.startNow(this@App)
+        }
+
     }
 
     override fun newImageLoader(): ImageLoader {
@@ -194,6 +204,14 @@ class App : Application(), DefaultLifecycleObserver, ImageLoaderFactory {
 
     override fun onStop(owner: LifecycleOwner) {
         SecureActivityDelegate.onApplicationStopped()
+
+        val syncPreferences: SyncPreferences by injectLazy()
+        val syncFlags = syncPreferences.syncFlags().get()
+        if (syncPreferences.isSyncEnabled() && syncFlags
+            and SyncPreferences.Flags.SYNC_ON_APP_RESUME == SyncPreferences.Flags.SYNC_ON_APP_RESUME
+        ) {
+            SyncDataJob.startNow(this@App)
+        }
     }
 
     override fun getPackageName(): String {
