@@ -1,5 +1,5 @@
 | Preview Builds | Release Builds |
-|-------|----------|----------|
+|-------|----------|
 | [![Preview](https://ci.codeberg.org/api/badges/12999/status.svg)](https://codeberg.org/fabseman/fabsemanga/releases) | [![stable release](https://ci.codeberg.org/api/badges/12999/status.svg)](https://codeberg.org/fabseman/fabsemanga/releases) |
 
 # ![app icon](./.forgejo/readme-images/app-icon.png)Fabsemanga
