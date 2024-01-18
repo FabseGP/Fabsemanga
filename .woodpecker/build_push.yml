@@ -2,4 +2,30 @@ steps:
   build:
     image: thyrlian/android-sdk
     commands:
-      - ./gradlew clean assembleStandardRelease
+      - ./gradlew assembleStandardRelease
+    when:
+      event: push
+  release:
+    image: woodpeckerci/plugin-gitea-release
+    settings:
+      base_url: https://codeberg.org
+      file_exists: overwrite
+      files:
+        - app/build/outputs/apk/standard/release/app-standard-universal-release-unsigned-signed.apk
+        - app/build/outputs/apk/standard/release/app-standard-arm64-v8a-release-unsigned-signed.apk
+        - app/build/outputs/apk/standard/release/app-standard-armeabi-v7a-release-unsigned-signed.apk
+      api_key:
+        from_secret: FABSEGIT_ACCESS_1
+      target: master
+    when:
+      event: push
+  release-helper:
+    image: woodpeckerci/plugin-ready-release-go:latest
+    settings:
+      git_email: personal@fabseman.space
+      github_token:
+        from_secret: FABSEGIT_ACCESS_2
+        release_branch: master
+    when:
+      event: push
+      branch: release
