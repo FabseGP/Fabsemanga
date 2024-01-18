@@ -1,10 +1,12 @@
+when:
+  event: tag
+
 steps:
   build:
     image: thyrlian/android-sdk
     commands:
-      - ./gradlew assembleStandardRelease
-    when:
-      event: push
+      - echo "$${SIGNING_KEY}" | base64 -d > app/keystore.p12
+      - ./gradlew assembleStandardRelease -release_store_file="keystore.p12" -Drelease_store_password="$${KEYSTOREPASS}" -Drelease_key_alias="$${ALIAS}" -Drelease_key_password="$${KEYPASS}"
   release:
     image: woodpeckerci/plugin-gitea-release
     settings:
@@ -15,17 +17,5 @@ steps:
         - app/build/outputs/apk/standard/release/app-standard-arm64-v8a-release-unsigned-signed.apk
         - app/build/outputs/apk/standard/release/app-standard-armeabi-v7a-release-unsigned-signed.apk
       api_key:
-        from_secret: FABSEGIT_ACCESS_1
+        from_secret: FABSEGIT_RELEASE
       target: master
-    when:
-      event: push
-  release-helper:
-    image: woodpeckerci/plugin-ready-release-go:latest
-    settings:
-      git_email: personal@fabseman.space
-      github_token:
-        from_secret: FABSEGIT_ACCESS_2
-        release_branch: master
-    when:
-      event: push
-      branch: release

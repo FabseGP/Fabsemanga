@@ -31,6 +31,17 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        create("release") {
+            if (System.getProperty("release_store_file") != null) {
+                storeFile file(System.getProperty("release_store_file"))
+                storePassword System.getProperty("release_store_password")
+                keyAlias System.getProperty("release_key_alias")
+                keyPassword System.getProperty("release_key_password")
+            }
+        }
+    }
+
     splits {
         abi {
             isEnable = true
@@ -50,6 +61,12 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
+            if (System.getProperty("release_store_file") != null) {
+                signingConfig = signingConfigs.getByName("release")
+            } else {
+                signingConfig = signingConfigs.getByName("debug")
+            }
+
         }
         create("preview") {
             initWith(getByName("release"))
