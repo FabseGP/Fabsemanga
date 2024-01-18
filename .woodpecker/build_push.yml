@@ -1,0 +1,5 @@
+steps:
+  build:
+    image: mobiledevops/android-sdk-image:latest
+    commands:
+      - ./gradlew assembleStandardRelease
