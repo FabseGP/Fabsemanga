@@ -244,11 +244,7 @@ class App : Application(), DefaultLifecycleObserver, ImageLoaderFactory {
     private fun setupExhLogging() {
         EHLogLevel.init(this)
 
-        val logLevel = when {
-            EHLogLevel.shouldLog(EHLogLevel.EXTREME) -> LogLevel.ALL
-            EHLogLevel.shouldLog(EHLogLevel.EXTRA) || BuildConfig.DEBUG -> LogLevel.DEBUG
-            else -> LogLevel.WARN
-        }
+        val logLevel = LogLevel.WARN
 
         val logConfig = LogConfiguration.Builder()
             .logLevel(logLevel)

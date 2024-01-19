@@ -43,6 +43,7 @@ import eu.kanade.tachiyomi.data.library.LibraryUpdateJob
 import eu.kanade.tachiyomi.network.NetworkHelper
 import eu.kanade.tachiyomi.network.NetworkPreferences
 import eu.kanade.tachiyomi.network.PREF_DOH_ADGUARD
+import eu.kanade.tachiyomi.network.PREF_DOH_LIBREDNS
 import eu.kanade.tachiyomi.network.PREF_DOH_MULLVAD
 import eu.kanade.tachiyomi.network.PREF_DOH_QUAD9
 import eu.kanade.tachiyomi.source.AndroidSourceManager
@@ -57,7 +58,6 @@ import eu.kanade.tachiyomi.util.system.powerManager
 import eu.kanade.tachiyomi.util.system.setDefaultSettings
 import eu.kanade.tachiyomi.util.system.toast
 import exh.debug.SettingsDebugScreen
-import exh.log.EHLogLevel
 import exh.pref.DelegateSourcePreferences
 import exh.source.BlacklistedSources
 import exh.source.EH_SOURCE_ID
@@ -267,8 +267,9 @@ object SettingsAdvancedScreen : SearchableSettings {
                     entries = persistentMapOf(
                         -1 to stringResource(MR.strings.disabled),
                         PREF_DOH_ADGUARD to "AdGuard",
-                        PREF_DOH_QUAD9 to "Quad9",
+                        PREF_DOH_LIBREDNS to "LibreDNS",
                         PREF_DOH_MULLVAD to "Mullvad",
+                        PREF_DOH_QUAD9 to "Quad9",
                     ),
                     onValueChanged = {
                         context.toast(MR.strings.requires_app_restart)
@@ -654,16 +655,6 @@ object SettingsAdvancedScreen : SearchableSettings {
                             .joinToString(),
                     ),
                 ),
-                Preference.PreferenceItem.ListPreference(
-                    pref = unsortedPreferences.logLevel(),
-                    title = stringResource(SYMR.strings.log_level),
-                    subtitle = stringResource(SYMR.strings.log_level_summary),
-                    entries = EHLogLevel.entries.mapIndexed { index, ehLogLevel ->
-                        index to "${context.stringResource(ehLogLevel.nameRes)} (${
-                            context.stringResource(ehLogLevel.description)
-                        })"
-                    }.toMap().toImmutableMap(),
-                ),
                 Preference.PreferenceItem.SwitchPreference(
                     pref = sourcePreferences.enableSourceBlacklist(),
                     title = stringResource(SYMR.strings.enable_source_blacklist),
@@ -672,55 +663,6 @@ object SettingsAdvancedScreen : SearchableSettings {
                         stringResource(MR.strings.app_name),
                     ),
                 ),
-                kotlin.run {
-                    var enableEncryptDatabase by rememberSaveable { mutableStateOf(false) }
-
-                    if (enableEncryptDatabase) {
-                        val dismiss = { enableEncryptDatabase = false }
-                        AlertDialog(
-                            onDismissRequest = dismiss,
-                            title = { Text(text = stringResource(SYMR.strings.encrypt_database)) },
-                            text = {
-                                Text(
-                                    text = remember {
-                                        HtmlCompat.fromHtml(
-                                            context.stringResource(SYMR.strings.encrypt_database_message),
-                                            HtmlCompat.FROM_HTML_MODE_COMPACT,
-                                        ).toAnnotatedString()
-                                    },
-                                )
-                            },
-                            dismissButton = {
-                                TextButton(onClick = dismiss) {
-                                    Text(text = stringResource(MR.strings.action_cancel))
-                                }
-                            },
-                            confirmButton = {
-                                TextButton(
-                                    onClick = {
-                                        dismiss()
-                                        securityPreferences.encryptDatabase().set(true)
-                                    },
-                                ) {
-                                    Text(text = stringResource(MR.strings.action_ok))
-                                }
-                            },
-                        )
-                    }
-                    Preference.PreferenceItem.SwitchPreference(
-                        title = stringResource(SYMR.strings.encrypt_database),
-                        pref = securityPreferences.encryptDatabase(),
-                        subtitle = stringResource(SYMR.strings.encrypt_database_subtitle),
-                        onValueChanged = {
-                            if (it) {
-                                enableEncryptDatabase = true
-                                false
-                            } else {
-                                true
-                            }
-                        },
-                    )
-                },
                 Preference.PreferenceItem.TextPreference(
                     title = stringResource(SYMR.strings.open_debug_menu),
                     subtitle = remember {

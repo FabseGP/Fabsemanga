@@ -53,8 +53,9 @@ open /* SY <-- */ class NetworkHelper(
 
         when (preferences.dohProvider().get()) {
             PREF_DOH_ADGUARD -> builder.dohAdGuard()
-            PREF_DOH_QUAD9 -> builder.dohQuad9()
+            PREF_DOH_LIBREDNS -> builder.dohLibreDNS()
             PREF_DOH_MULLVAD -> builder.dohMullvad()
+            PREF_DOH_QUAD9 -> builder.dohQuad9()
         }
 
         builder.build()
