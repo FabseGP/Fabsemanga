@@ -94,11 +94,11 @@ body:
           required: true
         - label: I have written a short but informative title.
           required: true
-        - label: If this is an issue with an official extension, I should be opening an issue in the [extensions repository](https://github.com/tachiyomiorg/extensions/issues/new/choose).
+        - label: If this is an issue with an official extension, I should be opening an issue in the used extensions repository.
           required: true
         - label: I have gone through the [FAQ](https://fabsemanga.fabseman.space/docs/faq/general) and [troubleshooting guide](https://fabsemanga.fabseman.space/docs/guides/troubleshooting/).
           required: true
-        - label: I have updated the app to version **[1.0.0](https://codeberg.org/fabseman/fabsemanga/releases)**.
+        - label: I have updated the app to version **[0.0.4](https://codeberg.org/fabseman/fabsemanga/releases)**.
           required: true
         - label: I have updated all installed extensions.
           required: true

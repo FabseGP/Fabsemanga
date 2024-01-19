@@ -28,7 +28,7 @@ class AppUpdateChecker {
                     context.isInstalledFromFDroid(),
                     BuildConfig.COMMIT_COUNT.toInt(),
                     BuildConfig.VERSION_NAME,
-                    GITHUB_REPO,
+                    CODEBERG_REPO,
                     // SY -->
                     syDebugVersion,
                     // SY <--
@@ -49,10 +49,10 @@ class AppUpdateChecker {
     }
 }
 
-val GITHUB_REPO: String by lazy {
+val CODEBERG_REPO: String by lazy {
     // SY -->
     if (isPreviewBuildType) {
-        "fabseman/fabsemanga"
+        "fabseman/fabsemangapreview"
     } else {
         "fabseman/fabsemanga"
     }

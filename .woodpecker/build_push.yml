@@ -1,22 +1,42 @@
 when:
   event: tag
+  ref: refs/tags/v*
 
 steps:
   build:
     image: thyrlian/android-sdk
     commands:
-      - echo -e "storePassword=$${KEYSTOREPASS}\nkeyPassword=$${KEYPASS}\nkeyAlias=$${ALIAS}\nstoreFile=release-key.jks" | base64 -d > keystore.properties
+      - echo "storePassword=$${KEYSTOREPASS}\nkeyPassword=$${KEYPASS}\nkeyAlias=$${ALIAS}\nstoreFile=release-key.jks" > keystore.properties
       - echo "$${SIGNING_KEY}" | base64 -d > app/release-key.jks
-      - ./gradlew assembleStandardRelease
+      - ./gradlew assembleStandardRelease testStandardReleaseUnitTest
+      - mv app/build/outputs/apk/standard/release/app-standard-universal-release.apk fabsemanga-${CI_COMMIT_TAG}.apk
+      - APK_UNIVERSAL_SHA=`sha256sum fabsemanga-${CI_COMMIT_TAG}.apk | awk '{ print $1 }'`
+      - mv app/build/outputs/apk/standard/release/app-standard-arm64-v8a-release.apk fabsemanga-arm64-v8a-${CI_COMMIT_TAG}.apk
+      - APK_ARM64_V8A_SHA=`sha256sum fabsemanga-arm64-v8a-${CI_COMMIT_TAG}.apk | awk '{ print $1 }'`
+      - mv app/build/outputs/apk/standard/release/app-standard-armeabi-v7a-release.apk fabsemanga-armeabi-v7a-${CI_COMMIT_TAG}.apk
+      - APK_ARMEABI_V7A_SHA=`sha256sum fabsemanga-armeabi-v7a-${CI_COMMIT_TAG}.apk | awk '{ print $1 }'`
+      - cat <<EOF > checksums.txt
+---
+### Checksums
+| Variant      | SHA-256              |
+| ------------ | -------------------- |
+| Universal    | $APK_UNIVERSAL_SHA   |
+| arm64-v8a    | $APK_ARM64_V8A_SHA   |
+| armeabi-v7a  | $APK_ARMEABI_V7A_SHA |
+EOF
+    secrets: [ keystorepass, keypass, alias, signing_key ]
   release:
     image: woodpeckerci/plugin-gitea-release
     settings:
       base_url: https://codeberg.org
       file_exists: overwrite
       files:
-        - app/build/outputs/apk/standard/release/app-standard-universal-release-unsigned-signed.apk
-        - app/build/outputs/apk/standard/release/app-standard-arm64-v8a-release-unsigned-signed.apk
-        - app/build/outputs/apk/standard/release/app-standard-armeabi-v7a-release-unsigned-signed.apk
+        - "fabsemanga-${CI_COMMIT_TAG}.apk"
+        - "fabsemanga-arm64-v8a-${CI_COMMIT_TAG}.apk"
+        - "fabsemanga-armeabi-v7a-${CI_COMMIT_TAG}.apk"
       api_key:
         from_secret: FABSEGIT_RELEASE
       target: master
+      title: Fabsemanga ${CI_COMMIT_TAG} 
+      note: "checksums.txt"
+      draft: true

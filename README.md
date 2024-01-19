@@ -1,6 +1,6 @@
 | Preview Builds | Release Builds |
 |-------|----------|
-| [![Preview](https://ci.codeberg.org/api/badges/12999/status.svg)](https://codeberg.org/fabseman/fabsemanga/releases) | [![stable release](https://ci.codeberg.org/api/badges/12999/status.svg)](https://codeberg.org/fabseman/fabsemanga/releases) |
+| [![Preview](https://ci.codeberg.org/api/badges/13004/status.svg)](https://codeberg.org/fabseman/fabsemangapreview/releases) | [![stable release](https://ci.codeberg.org/api/badges/12999/status.svg)](https://codeberg.org/fabseman/fabsemanga/releases) |
 
 # ![app icon](./.forgejo/readme-images/app-icon.png)Fabsemanga
 Fabsemanga is a free and open source manga reader for Android 6.0 and above. Based on the og manga lord and its fork, namely [TachiyomiSY](https://github.com/jobobby04/TachiyomiSY).
@@ -9,7 +9,7 @@ Fabsemanga is a free and open source manga reader for Android 6.0 and above. Bas
 
 ## Features
 
-Features of Tachiyomi(original) include:
+Features of Mihon(original) include:
 * Online reading from a variety of sources
 * Local reading of downloaded content
 * A configurable reader with multiple viewers, reading directions and other settings.
@@ -22,7 +22,7 @@ Features of Tachiyomi(original) include:
 Features of Fabsemanga include:
 * Latest tab, store up to 5 sources where you can easily view the latest manga by viewing the tab
 * Automatic webtoon detection, allowing the reader to switch to webtoon mode automatically when viewing one
-* Manga recommendations, uses MAL and Anilist, as well as Neko Similar Manga for Mangadex manga(Thanks to Az, She11Shocked, Carlos, and Goldbattle)
+* Manga recommendations, uses MAL and Anilist, as well as Neko Similar Manga for Mangadex manga
 * Lewd filter, hide the lewd manga in your library when you want to
 * Tracking filter, filter your tracked manga so you can see them or see non-tracked manga, made by She11Shocked
 * Search tracking status in library, made by She11Shocked
@@ -47,12 +47,15 @@ Features of Fabsemanga include:
 * Library search engine, includes exclude, quotes as absolute, and a bunch of other ways to search
 * Enhanced views for internal and integrated sources
 * Enhanced usability for internal and delegated sources
+* Cross-device-sync using a self-hosted Syncyomi server
 
 Additional features for some extensions, features include custom description, opening in app and a bunch of other things based on the source:
 * Mangadex
 
 ## Download
 Get the app from our [releases page](https://codeberg.org/fabseman/fabsemanga/releases).
+
+If you want to try new features before they get to the stable release, you can download the preview version [here](https://codeberg.org/fabseman/fabsemangapreview/releases).
 
 ## Issues, Feature Requests and Contributing
 

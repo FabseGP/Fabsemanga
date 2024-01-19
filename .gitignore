@@ -2,6 +2,7 @@
 /local.properties
 /keystore.properties
 /app/release-key.jks
+/app/preview-key.jks
 /.idea/workspace.xml
 .DS_Store
 .idea/*

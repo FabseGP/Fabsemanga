@@ -16,9 +16,9 @@ class ReleaseServiceImpl(
     override suspend fun latest(repository: String): Release {
         return with(json) {
             networkService.client
-                .newCall(GET("https://codeberg.org/api/v1/repos/$repository/releases"))
+                .newCall(GET("https://codeberg.org/api/v1/repos/$repository/releases/latest"))
                 .awaitSuccess()
-                .parseAs<GithubRelease>()
+                .parseAs<CodebergRelease>()
                 .let(releaseMapper)
         }
     }
