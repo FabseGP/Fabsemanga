@@ -30,8 +30,8 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: update dependencies
-          committer: Codeberg noreply@codeberg.com
-          author: Codeberg noreply@codeberg.com
+          committer: update_dependencies@fabseman.space
+          author: fabsedep@codeberg.com
           title: Update dependencies
           body: |
             Dependencies update.
