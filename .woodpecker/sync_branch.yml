@@ -12,8 +12,8 @@ steps:
         from_secret: FABSEGIT_PULL
       owner: ${CI_REPO_OWNER}
       repo: ${CI_REPO_NAME}
-      branch: release
-      base_branch: master
+      branch: master
+      base_branch: release
       pr_title: ${CI_COMMIT_MESSAGE}
       pr_body: PR automatically created by Woodpecker CI
       skip_on_missing_branch: true
