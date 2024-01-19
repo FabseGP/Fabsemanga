@@ -3,10 +3,21 @@ when:
   branch: master
 
 steps:
-  release-helper:
-    image: woodpeckerci/plugin-ready-release-go
+  create-pr:
+    image: johnwalkerx/gitea-pull-request-create-plugin:latest
+    pull: true
     settings:
-       release_branch: release
-      git_email: diffs@fabseman.space
-      github_token:
-        from_secret: FABSEGIT_RELEASE
+      gitea_address: https://codeberg.org
+      gitea_token:
+        from_secret: FABSEGIT_PULL
+      owner: ${CI_REPO_OWNER}
+      repo: ${CI_REPO_NAME}
+      branch: release
+      base_branch: master
+      pr_title: ${CI_COMMIT_MESSAGE}
+      pr_body: PR automatically created by Woodpecker CI
+      skip_on_missing_branch: true
+      close_pr_if_empty: true
+      delete_branch_if_pr_empty: true
+      merge_when_checks_succeed: false
+      delete_branch_after_merge: true
