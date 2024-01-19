@@ -16,14 +16,14 @@ steps:
       - mv app/build/outputs/apk/standard/release/app-standard-armeabi-v7a-release.apk fabsemanga-armeabi-v7a-${CI_COMMIT_TAG}.apk
       - APK_ARMEABI_V7A_SHA=`sha256sum fabsemanga-armeabi-v7a-${CI_COMMIT_TAG}.apk | awk '{ print $1 }'`
       - cat <<EOF > checksums.txt
----
-### Checksums
-| Variant      | SHA-256              |
-| ------------ | -------------------- |
-| Universal    | $APK_UNIVERSAL_SHA   |
-| arm64-v8a    | $APK_ARM64_V8A_SHA   |
-| armeabi-v7a  | $APK_ARMEABI_V7A_SHA |
-EOF
+        ---
+        ### Checksums
+        | Variant      | SHA-256              |
+        | ------------ | -------------------- |
+        | Universal    | $APK_UNIVERSAL_SHA   |
+        | arm64-v8a    | $APK_ARM64_V8A_SHA   |
+        | armeabi-v7a  | $APK_ARMEABI_V7A_SHA |
+        EOF
     secrets: [ keystorepass, keypass, alias, signing_key ]
   release:
     image: woodpeckerci/plugin-gitea-release
