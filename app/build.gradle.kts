@@ -1,6 +1,6 @@
+import java.util.Properties
+import java.io.FileInputStream
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
-import java.nio.file.Files
 
 plugins {
     id("com.android.application")
@@ -12,6 +12,10 @@ plugins {
 }
 
 val SUPPORTED_ABIS = setOf("armeabi-v7a", "arm64-v8a")
+
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+val keystoreProperties = Properties()
+keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 
 android {
     namespace = "eu.kanade.tachiyomi"
@@ -35,12 +39,10 @@ android {
 
     signingConfigs {
         create("release") {
-            if (System.getProperty("release_store_file") != null) {
-                storeFile file(System.getProperty("release_store_file"))
-                storePassword System.getProperty("release_store_password")
-                keyAlias System.getProperty("release_key_alias")
-                keyPassword System.getProperty("release_key_password")
-            }
+            keyAlias = keystoreProperties["keyAlias"] as String
+            keyPassword = keystoreProperties["keyPassword"] as String
+            storeFile = file(keystoreProperties["storeFile"] as String)
+            storePassword = keystoreProperties["storePassword"] as String
         }
     }
 
@@ -63,12 +65,7 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
-            if (System.getProperty("release_store_file") != null) {
-                signingConfig = signingConfigs.getByName("release")
-            } else {
-                signingConfig = signingConfigs.getByName("debug")
-            }
-
+            signingConfig = signingConfigs.getByName("release")
         }
         create("preview") {
             initWith(getByName("release"))
