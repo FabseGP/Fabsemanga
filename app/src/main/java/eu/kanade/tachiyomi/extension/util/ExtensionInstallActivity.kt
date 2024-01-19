@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.extension.model.InstallStep
-import eu.kanade.tachiyomi.util.system.hasMiuiPackageInstaller
 import eu.kanade.tachiyomi.util.system.toast
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -29,11 +28,6 @@ class ExtensionInstallActivity : Activity() {
             .setDataAndType(intent.data, intent.type)
             .putExtra(Intent.EXTRA_RETURN_RESULT, true)
             .setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-
-        if (hasMiuiPackageInstaller) {
-            ignoreResult = true
-            ignoreUntil = System.nanoTime() + 1.seconds.inWholeNanoseconds
-        }
 
         try {
             startActivityForResult(installIntent, INSTALL_REQUEST_CODE)

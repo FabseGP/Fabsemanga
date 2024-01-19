@@ -82,12 +82,6 @@ class CreateBackupScreen : Screen() {
                     }
                 },
             ) {
-                if (DeviceUtil.isMiui && DeviceUtil.isMiuiOptimizationDisabled()) {
-                    item {
-                        WarningBanner(MR.strings.restore_miui_warning)
-                    }
-                }
-
                 item {
                     SectionCard(MR.strings.label_library) {
                         Options(BackupOptions.libraryOptions, state, model)

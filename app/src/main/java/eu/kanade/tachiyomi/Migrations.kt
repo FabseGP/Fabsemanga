@@ -244,12 +244,6 @@ object Migrations {
                 if (oldSecureScreen) {
                     securityPreferences.secureScreen().set(SecurityPreferences.SecureScreenMode.ALWAYS)
                 }
-                if (
-                    DeviceUtil.isMiui &&
-                    basePreferences.extensionInstaller().get() == BasePreferences.ExtensionInstaller.PACKAGEINSTALLER
-                ) {
-                    basePreferences.extensionInstaller().set(BasePreferences.ExtensionInstaller.LEGACY)
-                }
             }
             if (oldVersion < 77) {
                 val oldReaderTap = prefs.getBoolean("reader_tap", false)

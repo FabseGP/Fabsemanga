@@ -148,8 +148,6 @@ fun Context.isPackageInstalled(packageName: String): Boolean {
     }
 }
 
-val Context.hasMiuiPackageInstaller get() = isPackageInstalled("com.miui.packageinstaller")
-
 val Context.isShizukuInstalled get() = isPackageInstalled("moe.shizuku.privileged.api") || Sui.isSui()
 
 fun Context.isInstalledFromFDroid(): Boolean {

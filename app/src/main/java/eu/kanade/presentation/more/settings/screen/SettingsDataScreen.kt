@@ -216,10 +216,6 @@ object SettingsDataScreen : SearchableSettings {
                                     checked = false,
                                     onCheckedChange = {
                                         if (!BackupRestoreJob.isRunning(context)) {
-                                            if (DeviceUtil.isMiui && DeviceUtil.isMiuiOptimizationDisabled()) {
-                                                context.toast(MR.strings.restore_miui_warning)
-                                            }
-
                                             // no need to catch because it's wrapped with a chooser
                                             chooseBackup.launch("*/*")
                                         } else {

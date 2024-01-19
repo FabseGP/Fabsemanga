@@ -355,13 +355,6 @@ object EXHMigrations {
                     if (oldSecureScreen) {
                         securityPreferences.secureScreen().set(SecurityPreferences.SecureScreenMode.ALWAYS)
                     }
-                    if (
-                        DeviceUtil.isMiui &&
-                        basePreferences.extensionInstaller().get() == BasePreferences.ExtensionInstaller
-                            .PACKAGEINSTALLER
-                    ) {
-                        basePreferences.extensionInstaller().set(BasePreferences.ExtensionInstaller.LEGACY)
-                    }
                 }
                 if (oldVersion under 28) {
                     if (prefs.getString("pref_display_mode_library", null) == "NO_TITLE_GRID") {

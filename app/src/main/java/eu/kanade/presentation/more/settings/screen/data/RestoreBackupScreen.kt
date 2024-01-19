@@ -69,12 +69,6 @@ class RestoreBackupScreen(
                     navigator.pop()
                 },
             ) {
-                if (DeviceUtil.isMiui && DeviceUtil.isMiuiOptimizationDisabled()) {
-                    item {
-                        WarningBanner(MR.strings.restore_miui_warning)
-                    }
-                }
-
                 if (state.canRestore) {
                     item {
                         SectionCard {

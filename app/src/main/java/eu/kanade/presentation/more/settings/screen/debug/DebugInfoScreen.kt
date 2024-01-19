@@ -13,7 +13,6 @@ import eu.kanade.presentation.more.settings.Preference
 import eu.kanade.presentation.more.settings.PreferenceScaffold
 import eu.kanade.presentation.more.settings.screen.about.AboutScreen
 import eu.kanade.presentation.util.Screen
-import eu.kanade.tachiyomi.util.system.DeviceUtil
 import eu.kanade.tachiyomi.util.system.WebViewUtil
 import kotlinx.collections.immutable.mutate
 import kotlinx.collections.immutable.persistentListOf
@@ -105,22 +104,6 @@ class DebugInfoScreen : Screen() {
                     subtitle = "${Build.MANUFACTURER} ${Build.MODEL} (${Build.DEVICE})",
                 ),
             )
-
-            if (DeviceUtil.oneUiVersion != null) {
-                it.add(
-                    Preference.PreferenceItem.TextPreference(
-                        title = "OneUI version",
-                        subtitle = "${DeviceUtil.oneUiVersion}",
-                    ),
-                )
-            } else if (DeviceUtil.miuiMajorVersion != null) {
-                it.add(
-                    Preference.PreferenceItem.TextPreference(
-                        title = "MIUI version",
-                        subtitle = "${DeviceUtil.miuiMajorVersion}",
-                    ),
-                )
-            }
 
             val androidVersion = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 Build.VERSION.RELEASE_OR_PREVIEW_DISPLAY
