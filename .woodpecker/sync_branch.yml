@@ -1,0 +1,12 @@
+when:
+  event: push
+  branch: master
+
+steps:
+  release-helper:
+    image: woodpeckerci/plugin-ready-release-go
+    settings:
+       release_branch: release
+      git_email: diffs@fabseman.space
+      github_token:
+        from_secret: FABSEGIT_RELEASE
