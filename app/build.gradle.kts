@@ -59,7 +59,6 @@ android {
         named("debug") {
             versionNameSuffix = "-${getCommitCount()}"
             applicationIdSuffix = ".debug"
-            isPseudoLocalesEnabled = true
         }
         named("release") {
             isMinifyEnabled = true
@@ -70,6 +69,8 @@ android {
         create("preview") {
             initWith(getByName("release"))
             buildConfigField("boolean", "PREVIEW", "true")
+            isMinifyEnabled = true
+            isShrinkResources = true
 
             signingConfig = signingConfigs.getByName("debug")
             matchingFallbacks.add("release")
