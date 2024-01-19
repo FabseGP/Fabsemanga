@@ -24,7 +24,7 @@ android {
         applicationId = "app.fabsemanga"
 
         versionCode = 2
-        versionName = "0.0.4"
+        versionName = "0.1.0"
 
         buildConfigField("String", "COMMIT_COUNT", "\"${getCommitCount()}\"")
         buildConfigField("String", "COMMIT_SHA", "\"${getGitSha()}\"")
