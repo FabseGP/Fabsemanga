@@ -53,8 +53,6 @@ import eu.kanade.tachiyomi.util.system.DeviceUtil
 import eu.kanade.tachiyomi.util.system.WebViewUtil
 import eu.kanade.tachiyomi.util.system.animatorDurationScale
 import eu.kanade.tachiyomi.util.system.cancelNotification
-import eu.kanade.tachiyomi.util.system.isDevFlavor
-import eu.kanade.tachiyomi.util.system.isReleaseBuildType
 import eu.kanade.tachiyomi.util.system.notify
 import exh.log.EHLogLevel
 import exh.log.EnhancedFilePrinter
@@ -69,8 +67,8 @@ import logcat.LogcatLogger
 import org.conscrypt.Conscrypt
 import tachiyomi.core.i18n.stringResource
 import tachiyomi.core.util.system.logcat
-import tachiyomi.domain.sync.SyncPreferences
 import tachiyomi.domain.storage.service.StorageManager
+import tachiyomi.domain.sync.SyncPreferences
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.widget.WidgetManager
 import uy.kohesive.injekt.Injekt
@@ -162,7 +160,6 @@ class App : Application(), DefaultLifecycleObserver, ImageLoaderFactory {
         ) {
             SyncDataJob.startNow(this@App)
         }
-
     }
 
     override fun newImageLoader(): ImageLoader {

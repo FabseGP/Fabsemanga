@@ -164,7 +164,7 @@ private fun ExtensionContent(
                     Modifier
                         .fillMaxWidth()
                         .padding(horizontal = MaterialTheme.padding.medium),
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.ErrorOutline,

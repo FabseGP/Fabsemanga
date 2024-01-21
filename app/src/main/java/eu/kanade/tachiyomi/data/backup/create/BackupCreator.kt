@@ -55,7 +55,7 @@ class BackupCreator(
     // SY -->
     private val savedSearchBackupCreator: SavedSearchBackupCreator = SavedSearchBackupCreator(),
     private val getMergedManga: GetMergedManga = Injekt.get(),
-    private val handler: DatabaseHandler = Injekt.get()
+    private val handler: DatabaseHandler = Injekt.get(),
     // SY <--
 ) {
 
@@ -86,11 +86,11 @@ class BackupCreator(
             }
 
             val databaseManga = getFavorites.await() /* SY --> */ +
-            if (options.readEntries) {
-                handler.awaitList { mangasQueries.getReadMangaNotInLibrary(MangaMapper::mapManga) }
-            } else {
-                emptyList()
-            } + getMergedManga.await() // SY <--
+                if (options.readEntries) {
+                    handler.awaitList { mangasQueries.getReadMangaNotInLibrary(MangaMapper::mapManga) }
+                } else {
+                    emptyList()
+                } + getMergedManga.await() // SY <--
             val backup = Backup(
                 backupManga = backupMangas(databaseManga, options),
                 backupCategories = backupCategories(options),

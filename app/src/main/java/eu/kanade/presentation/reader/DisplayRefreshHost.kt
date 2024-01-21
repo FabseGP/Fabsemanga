@@ -35,15 +35,11 @@ fun DisplayRefreshHost(
         }
     }
 
-    if (currentDisplayRefresh) {
-        Canvas(
-            modifier = modifier.fillMaxSize(),
-        ) {
+    Canvas(
+        modifier = modifier.fillMaxSize(),
+    ) {
+        if (currentDisplayRefresh) {
             drawRect(Color.Black)
         }
-    }
-    else{
-        // Don't draw anything to clear the canvas
-        Canvas(modifier = modifier.fillMaxSize()) {}
     }
 }

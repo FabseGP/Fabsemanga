@@ -3,6 +3,7 @@
 -keep,allowoptimization class eu.kanade.**
 -keep,allowoptimization class tachiyomi.**
 -keep,allowoptimization class fabsemanga.**
+-keep,allowoptimization class app.fabsemanga.**
 
 # Keep common dependencies used in extensions
 -keep,allowoptimization class androidx.preference.** { public protected *; }
@@ -59,14 +60,6 @@
     kotlinx.serialization.KSerializer serializer(...);
 }
 
--keep,includedescriptorclasses class fabsemanga.**$$serializer { *; }
--keepclassmembers class dev.yokai.** {
-    *** Companion;
-}
--keepclasseswithmembers class fabsemanga.** {
-    kotlinx.serialization.KSerializer serializer(...);
-}
-
 -keep,includedescriptorclasses class eu.kanade.**$$serializer { *; }
 -keepclassmembers class eu.kanade.** {
     *** Companion;
@@ -88,6 +81,22 @@
     *** Companion;
 }
 -keepclasseswithmembers class exh.** {
+    kotlinx.serialization.KSerializer serializer(...);
+}
+
+-keep,includedescriptorclasses class app.fabsemanga.**$$serializer { *; }
+-keepclassmembers class app.fabsemanga.** {
+    *** Companion;
+}
+-keepclasseswithmembers class app.fabsemanga.** {
+    kotlinx.serialization.KSerializer serializer(...);
+}
+
+-keep,includedescriptorclasses class fabsemanga.**$$serializer { *; }
+-keepclassmembers class fabsemanga.** {
+    *** Companion;
+}
+-keepclasseswithmembers class fabsemanga.** {
     kotlinx.serialization.KSerializer serializer(...);
 }
 
@@ -131,6 +140,10 @@
 # XmlUtil
 -keep public enum nl.adaptivity.xmlutil.EventType { *; }
 
+# Firebase
+-keep class com.google.firebase.installations.** { *; }
+-keep interface com.google.firebase.installations.** { *; }
+
 # SY -->
 # SqlCipher
 -keepclassmembers class net.zetetic.database.sqlcipher.SQLiteCustomFunction { *; }
@@ -155,6 +168,12 @@
 
 # === RxBinding
 -dontwarn com.google.auto.value.AutoValue
+
+# === Crashlytics
+-keepattributes *Annotation*
+-keepattributes SourceFile,LineNumberTable
+-keep class com.crashlytics.** { *; }
+-dontwarn com.crashlytics.**
 
 # === Humanize + Guava: https://github.com/google/guava/wiki/UsingProGuardWithGuava
 -dontwarn javax.lang.model.element.Modifier

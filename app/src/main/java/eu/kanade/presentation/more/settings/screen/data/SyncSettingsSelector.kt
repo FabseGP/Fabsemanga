@@ -20,7 +20,6 @@ import kotlinx.coroutines.flow.update
 import tachiyomi.domain.sync.SyncOptions
 import tachiyomi.domain.sync.SyncPreferences
 import tachiyomi.i18n.MR
-import tachiyomi.i18n.sy.SYMR
 import tachiyomi.presentation.core.components.LabeledCheckbox
 import tachiyomi.presentation.core.components.LazyColumnWithAction
 import tachiyomi.presentation.core.components.SectionCard

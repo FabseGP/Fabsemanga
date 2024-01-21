@@ -170,24 +170,24 @@ class PagerPageHolder(
                             null
                         }
                         ).use { stream2 ->
-                            if (viewer.config.dualPageSplit) {
-                                process(item.first, stream)
+                        if (viewer.config.dualPageSplit) {
+                            process(item.first, stream)
+                        } else {
+                            mergePages(stream, stream2)
+                        }.use { itemStream ->
+                            // SY <--
+                            val bais = ByteArrayInputStream(itemStream.readBytes())
+                            val isAnimated = ImageUtil.isAnimatedAndSupported(bais)
+                            bais.reset()
+                            val background = if (!isAnimated && viewer.config.automaticBackground) {
+                                ImageUtil.chooseBackground(context, bais)
                             } else {
-                                mergePages(stream, stream2)
-                            }.use { itemStream ->
-                                // SY <--
-                                val bais = ByteArrayInputStream(itemStream.readBytes())
-                                val isAnimated = ImageUtil.isAnimatedAndSupported(bais)
-                                bais.reset()
-                                val background = if (!isAnimated && viewer.config.automaticBackground) {
-                                    ImageUtil.chooseBackground(context, bais)
-                                } else {
-                                    null
-                                }
-                                bais.reset()
-                                Triple(bais, isAnimated, background)
+                                null
                             }
+                            bais.reset()
+                            Triple(bais, isAnimated, background)
                         }
+                    }
                 }
             }
             withUIContext {

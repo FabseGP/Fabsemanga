@@ -21,7 +21,6 @@ data class CodebergRelease(
 @Serializable
 data class CodebergAssets(@SerialName("browser_download_url") val downloadLink: String)
 
-
 val releaseMapper: (CodebergRelease) -> Release = {
     Release(
         it.version,

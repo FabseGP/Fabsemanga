@@ -538,7 +538,7 @@ private fun MangaScreenSmallImpl(
                             onOpenPage = onOpenPagePreview,
                             onMorePreviewsClicked = onMorePreviewsClicked,
                             maxWidth = maxWidth,
-                            setMaxWidth = { maxWidth = it }
+                            setMaxWidth = { maxWidth = it },
                         )
                     }
                     // SY <--

@@ -45,7 +45,6 @@ import exh.search.Namespace
 import exh.search.QueryComponent
 import exh.search.SearchEngine
 import exh.search.Text
-import exh.source.EH_SOURCE_ID
 import exh.source.MERGED_SOURCE_ID
 import exh.source.isEhBasedManga
 import exh.source.isMetadataSource
@@ -849,10 +848,11 @@ class LibraryScreenModel(
             } else {
                 categoryName
             }
-            LibraryGroup.BY_TRACK_STATUS -> TrackStatus.entries
-                .find { it.int.toLong() == category?.id }
-                .let { it ?: TrackStatus.OTHER }
-                .let { context.stringResource(it.res) }
+            LibraryGroup.BY_TRACK_STATUS ->
+                TrackStatus.entries
+                    .find { it.int.toLong() == category?.id }
+                    .let { it ?: TrackStatus.OTHER }
+                    .let { context.stringResource(it.res) }
             LibraryGroup.UNGROUPED -> context.stringResource(SYMR.strings.ungrouped)
             else -> categoryName
         }

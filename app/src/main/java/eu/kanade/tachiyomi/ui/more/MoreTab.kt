@@ -86,7 +86,7 @@ object MoreTab : Tab {
             // SY -->
             onClickUpdates = { navigator.push(UpdatesTab) },
             onClickHistory = { navigator.push(HistoryTab) },
-            onClickRepos = { navigator.push(ExtensionReposScreen()) }
+            onClickRepos = { navigator.push(ExtensionReposScreen()) },
             // SY <--
         )
     }

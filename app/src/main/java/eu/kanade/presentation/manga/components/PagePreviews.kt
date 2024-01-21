@@ -25,7 +25,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
@@ -45,7 +44,7 @@ import tachiyomi.presentation.core.i18n.stringResource
 
 @Composable
 private fun PagePreviewLoading(
-    setMaxWidth: (Dp) -> Unit
+    setMaxWidth: (Dp) -> Unit,
 ) {
     val density = LocalDensity.current
     Box(
@@ -64,7 +63,7 @@ private fun PagePreviewLoading(
 @Composable
 private fun PagePreviewRow(
     onOpenPage: (Int) -> Unit,
-    items: ImmutableList<PagePreview>
+    items: ImmutableList<PagePreview>,
 ) {
     Row(
         modifier = Modifier
@@ -89,7 +88,7 @@ private fun PagePreviewMore(
 ) {
     Box(
         modifier = Modifier.fillMaxWidth(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         TextButton(onClick = onMorePreviewsClicked) {
             Text(stringResource(SYMR.strings.more_previews))
@@ -116,7 +115,7 @@ fun PagePreviews(
                 pagePreviewState.pagePreviews.take(4 * itemPerRowCount).chunked(itemPerRowCount).forEach {
                     PagePreviewRow(
                         onOpenPage = onOpenPage,
-                        items = remember(it) { it.toImmutableList() }
+                        items = remember(it) { it.toImmutableList() },
                     )
                 }
 
@@ -132,7 +131,7 @@ fun LazyListScope.PagePreviewItems(
     onOpenPage: (Int) -> Unit,
     onMorePreviewsClicked: () -> Unit,
     maxWidth: Dp,
-    setMaxWidth: (Dp) -> Unit
+    setMaxWidth: (Dp) -> Unit,
 ) {
     when {
         pagePreviewState is PagePreviewState.Loading || maxWidth == Dp.Hairline -> {
@@ -152,7 +151,7 @@ fun LazyListScope.PagePreviewItems(
             ) {
                 PagePreviewRow(
                     onOpenPage = onOpenPage,
-                    items = remember(it) { it.toImmutableList() }
+                    items = remember(it) { it.toImmutableList() },
                 )
             }
             item(

@@ -1,6 +1,5 @@
 package exh.util
 
-import exh.source.isEhBasedManga
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.domain.source.service.SourceManager
 import uy.kohesive.injekt.Injekt

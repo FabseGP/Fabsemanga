@@ -8,7 +8,7 @@ steps:
     commands:
       - echo "storePassword=$${KEYSTOREPASS}\nkeyPassword=$${KEYPASS}\nkeyAlias=$${ALIAS}\nstoreFile=release-key.jks" > keystore.properties
       - echo "$${SIGNING_KEY}" | base64 -d > app/release-key.jks
-      - ./gradlew assembleStandardRelease testStandardReleaseUnitTest
+      - ./gradlew assembleStandardRelease testStandardReleaseUnitTest -x ktlintFormat
       - mv app/build/outputs/apk/standard/release/app-standard-universal-release.apk fabsemanga-${CI_COMMIT_TAG}.apk
       - APK_UNIVERSAL_SHA=`sha256sum fabsemanga-${CI_COMMIT_TAG}.apk | awk '{ print $1 }'`
       - mv app/build/outputs/apk/standard/release/app-standard-arm64-v8a-release.apk fabsemanga-arm64-v8a-${CI_COMMIT_TAG}.apk

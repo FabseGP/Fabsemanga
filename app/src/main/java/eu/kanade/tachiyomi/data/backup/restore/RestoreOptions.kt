@@ -19,7 +19,7 @@ data class RestoreOptions(
         appSettings,
         sourceSettings,
         // SY -->
-        savedSearches
+        savedSearches,
         // SY <--
     )
 
@@ -56,7 +56,7 @@ data class RestoreOptions(
             appSettings = array[1],
             sourceSettings = array[2],
             // SY -->
-            savedSearches = array[3]
+            savedSearches = array[3],
             // SY <--
         )
     }

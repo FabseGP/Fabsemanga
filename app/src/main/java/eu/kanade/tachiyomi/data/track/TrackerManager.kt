@@ -29,7 +29,6 @@ class TrackerManager {
     val trackers =
         listOf(mdList, aniList, kitsu, komga, kavita, suwayomi)
 
-
     fun loggedInTrackers() = trackers.filter { it.isLoggedIn }
 
     fun get(id: Long) = trackers.find { it.id == id }

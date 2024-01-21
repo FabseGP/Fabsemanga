@@ -1,6 +1,6 @@
-import java.util.Properties
-import java.io.FileInputStream
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.io.FileInputStream
+import java.util.Properties
 
 plugins {
     id("com.android.application")
@@ -11,7 +11,7 @@ plugins {
     id("com.github.ben-manes.versions")
 }
 
-val SUPPORTED_ABIS = setOf("armeabi-v7a", "arm64-v8a")
+val SUPPORTED_ABIS = setOf("arm64-v8a", "x86_64")
 
 val keystorePropertiesFile = rootProject.file("keystore.properties")
 val keystoreProperties = Properties()
@@ -23,8 +23,8 @@ android {
     defaultConfig {
         applicationId = "app.fabsemanga"
 
-        versionCode = 2
-        versionName = "0.0.4"
+        versionCode = 3
+        versionName = "0.1.1"
 
         buildConfigField("String", "COMMIT_COUNT", "\"${getCommitCount()}\"")
         buildConfigField("String", "COMMIT_SHA", "\"${getGitSha()}\"")
@@ -73,9 +73,8 @@ android {
 
             signingConfig = signingConfigs.getByName("debug")
             matchingFallbacks.add("release")
-            val debugType = getByName("debug")
-            versionNameSuffix = debugType.versionNameSuffix
-            applicationIdSuffix = debugType.applicationIdSuffix
+            versionNameSuffix = "-p${getCommitCount()}"
+            applicationIdSuffix = ".preview"
             proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
         }
         create("benchmark") {

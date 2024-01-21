@@ -3,7 +3,6 @@ package eu.kanade.tachiyomi.util.system
 import android.annotation.SuppressLint
 import android.app.ActivityManager
 import android.content.Context
-import android.os.Build
 import androidx.core.content.getSystemService
 import logcat.LogPriority
 import tachiyomi.core.util.system.logcat
