@@ -8,14 +8,10 @@ steps:
     commands:
       - echo "storePassword=$${KEYSTOREPASS}\nkeyPassword=$${KEYPASS}\nkeyAlias=$${ALIAS}\nstoreFile=release-key.jks" > keystore.properties
       - echo "$${SIGNING_KEY}" | base64 -d > app/release-key.jks
-      - ./gradlew assembleStandardRelease testStandardReleaseUnitTest -x ktlintFormat
+      - ./gradlew detekt assembleStandardRelease testStandardReleaseUnitTest
       - mv app/build/outputs/apk/standard/release/app-standard-universal-release.apk fabsemanga-${CI_COMMIT_TAG}.apk
-      - APK_UNIVERSAL_SHA=`sha256sum fabsemanga-${CI_COMMIT_TAG}.apk | awk '{ print $1 }'`
       - mv app/build/outputs/apk/standard/release/app-standard-arm64-v8a-release.apk fabsemanga-arm64-v8a-${CI_COMMIT_TAG}.apk
-      - APK_ARM64_V8A_SHA=`sha256sum fabsemanga-arm64-v8a-${CI_COMMIT_TAG}.apk | awk '{ print $1 }'`
-      - mv app/build/outputs/apk/standard/release/app-standard-armeabi-v7a-release.apk fabsemanga-armeabi-v7a-${CI_COMMIT_TAG}.apk
-      - APK_ARMEABI_V7A_SHA=`sha256sum fabsemanga-armeabi-v7a-${CI_COMMIT_TAG}.apk | awk '{ print $1 }'`
-      - echo "---\n### Checksums\n| Variant      | SHA-256              |\n| ------------ | -------------------- |\n| Universal    | $APK_UNIVERSAL_SHA   |\n| arm64-v8a    | $APK_ARM64_V8A_SHA   |\n| armeabi-v7a  | $APK_ARMEABI_V7A_SHA |" > checksums.txt
+      - mv app/build/outputs/apk/standard/release/app-standard-x86_64-release.apk fabsemanga-x86_64-${CI_COMMIT_TAG}.apk
     secrets: [ keystorepass, keypass, alias, signing_key ]
   release:
     image: woodpeckerci/plugin-gitea-release
@@ -25,10 +21,10 @@ steps:
       files:
         - "fabsemanga-${CI_COMMIT_TAG}.apk"
         - "fabsemanga-arm64-v8a-${CI_COMMIT_TAG}.apk"
-        - "fabsemanga-armeabi-v7a-${CI_COMMIT_TAG}.apk"
+        - "fabsemanga-x86_64-${CI_COMMIT_TAG}.apk"
+      checksum: sha256
       api_key:
         from_secret: FABSEGIT_RELEASE
       target: master
       title: Fabsemanga ${CI_COMMIT_TAG} 
-      note: "checksums.txt"
       draft: true

@@ -67,7 +67,7 @@ class EnhancedFilePrinter internal constructor(
                 }
                 cleanLogFilesIfNecessary()
                 val file = folder.createFile(newFileName)
-                if (file == null || writer.open(file).not()) {
+                if (file == null || !writer.open(file)) {
                     return
                 }
             }

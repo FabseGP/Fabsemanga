@@ -108,7 +108,7 @@ class BilibiliHandler(currentClient: OkHttpClient) {
         }
 
         return result.data!!.episodeList
-            .filter { episode -> episode.isLocked.not() }
+            .filter { episode -> !episode.isLocked }
             .map { ep -> chapterFromObject(ep, result.data.id) }
     }
 

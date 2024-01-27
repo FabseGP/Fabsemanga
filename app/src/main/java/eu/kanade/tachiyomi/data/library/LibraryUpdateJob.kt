@@ -20,6 +20,7 @@ import eu.kanade.domain.chapter.interactor.SyncChaptersWithSource
 import eu.kanade.domain.manga.interactor.UpdateManga
 import eu.kanade.domain.manga.model.copyFrom
 import eu.kanade.domain.manga.model.toSManga
+import eu.kanade.domain.sync.SyncPreferences
 import eu.kanade.domain.track.model.toDbTrack
 import eu.kanade.domain.track.model.toDomainTrack
 import eu.kanade.tachiyomi.data.cache.CoverCache
@@ -88,7 +89,6 @@ import tachiyomi.domain.manga.model.Manga
 import tachiyomi.domain.manga.model.toMangaUpdate
 import tachiyomi.domain.source.model.SourceNotInstalledException
 import tachiyomi.domain.source.service.SourceManager
-import tachiyomi.domain.sync.SyncPreferences
 import tachiyomi.domain.track.interactor.GetTracks
 import tachiyomi.domain.track.interactor.InsertTrack
 import tachiyomi.i18n.MR
@@ -790,9 +790,8 @@ class LibraryUpdateJob(private val context: Context, workerParams: WorkerParamet
             val syncPreferences: SyncPreferences = Injekt.get()
 
             // Only proceed with SyncDataJob if sync is enabled and the specific sync on library update flag is set
-            if (syncPreferences.isSyncEnabled() && syncPreferences.syncFlags().get() and
-                SyncPreferences.Flags.SYNC_ON_LIBRARY_UPDATE == SyncPreferences.Flags.SYNC_ON_LIBRARY_UPDATE
-            ) {
+            val syncTriggerOpt = syncPreferences.getSyncTriggerOptions()
+            if (syncPreferences.isSyncEnabled() && syncTriggerOpt.syncOnLibraryUpdate) {
                 // Check if SyncDataJob is already running
                 if (wm.isRunning(SyncDataJob.TAG_MANUAL)) {
                     // SyncDataJob is already running

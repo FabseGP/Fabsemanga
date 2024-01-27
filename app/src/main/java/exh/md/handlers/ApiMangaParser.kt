@@ -213,7 +213,7 @@ class ApiMangaParser(
             // chapter.vol = vol
         }
 
-        if (attributes.chapter.isNullOrBlank().not()) {
+        if (!attributes.chapter.isNullOrBlank()) {
             val chp = "Ch.${attributes.chapter}"
             chapterName.appends(chp)
             // chapter.chapter_txt = chp

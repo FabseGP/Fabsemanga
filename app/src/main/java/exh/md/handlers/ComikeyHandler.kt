@@ -47,7 +47,7 @@ class ComikeyHandler(cloudflareClient: OkHttpClient, userAgent: String) {
     private fun getActualPageList(response: Response): Request? {
         val element = Json.parseToJsonElement(response.body.string()).jsonObject
         val ok = element["ok"]?.jsonPrimitive?.booleanOrNull ?: false
-        if (ok.not()) {
+        if (!ok) {
             return null
         }
         val url = element["href"]?.jsonPrimitive!!.content

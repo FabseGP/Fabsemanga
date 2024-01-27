@@ -1216,10 +1216,9 @@ class EHentai(
         return PagePreviewPage(
             page = page,
             pagePreviews = previews,
-            hasNextPage = doc.select("table.ptt tbody tr td")
+            hasNextPage = !doc.select("table.ptt tbody tr td")
                 .last()!!
-                .hasClass("ptdd")
-                .not(),
+                .hasClass("ptdd"),
             pagePreviewPages = doc.select("table.ptt tbody tr td a").asReversed()
                 .firstNotNullOfOrNull { it.text().toIntOrNull() },
         )

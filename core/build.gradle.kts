@@ -18,10 +18,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":i18n"))
-    // SY -->
+    implementation(projects.i18n)
     implementation(project(":i18n-sy"))
-    // SY <--
 
     api(libs.logcat)
 

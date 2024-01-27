@@ -3,9 +3,9 @@
     <changelogversion changeDate="" versionName="r3">
         <changelogtext>Pulled fix for black screen on page change when toggling "Flash on page change" from Mihon</changelogtext>
         <changelogtext>Purged all unused exh libraries, small space saving as a result</changelogtext>
-        <changelogtext>Pulled fix for black screen on page change when toggling "Flash on page change" from Mihon</changelogtext>
         <changelogtext>Updated handling for cross-device sync</changelogtext>
         <changelogtext>Removed debug settings page</changelogtext>
+        <changelogtext>Cleaned up filter settings in library</changelogtext>
     </changelogversion>
     <changelogversion changeDate="" versionName="r2">
         <changelogtext>[b]First preview release[/b]</changelogtext>

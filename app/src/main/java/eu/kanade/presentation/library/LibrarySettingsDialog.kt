@@ -146,14 +146,6 @@ private fun ColumnScope.FilterPage(
             onClick = { screenModel.toggleFilter(LibraryPreferences::filterIntervalCustom) },
         )
     }
-    // SY -->
-    val filterLewd by screenModel.libraryPreferences.filterLewd().collectAsState()
-    TriStateItem(
-        label = stringResource(SYMR.strings.lewd),
-        state = filterLewd,
-        onClick = { screenModel.toggleFilter(LibraryPreferences::filterLewd) },
-    )
-    // SY <--
 
     val trackers = remember { screenModel.trackers }
     when (trackers.size) {
@@ -196,10 +188,10 @@ private fun ColumnScope.SortPage(
         globalSortMode.type
     }
     val sortDescending = if (screenModel.grouping == LibraryGroup.BY_DEFAULT) {
-        category.sort.isAscending
+        !category.sort.isAscending
     } else {
-        globalSortMode.isAscending
-    }.not()
+        !globalSortMode.isAscending
+    }
     val hasSortTags by remember {
         screenModel.libraryPreferences.sortTagsForLibrary().changes()
             .map { it.isNotEmpty() }

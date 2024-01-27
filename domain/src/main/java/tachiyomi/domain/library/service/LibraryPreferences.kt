@@ -87,13 +87,6 @@ class LibraryPreferences(
         TriState.DISABLED,
     )
 
-    // SY -->
-    fun filterLewd() = preferenceStore.getEnum(
-        "pref_filter_library_lewd_v2",
-        TriState.DISABLED,
-    )
-    // SY <--
-
     fun filterTracking(id: Int) = preferenceStore.getEnum(
         "pref_filter_library_tracked_${id}_v2",
         TriState.DISABLED,

@@ -50,7 +50,6 @@ import exh.source.isEhBasedManga
 import exh.source.isMetadataSource
 import exh.source.mangaDexSourceIds
 import exh.util.cancellable
-import exh.util.isLewd
 import exh.util.nullIfBlank
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.PersistentList
@@ -266,10 +265,6 @@ class LibraryScreenModel(
         val includedTracks = loggedInTrackers.mapNotNull { if (it.value == TriState.ENABLED_IS) it.key else null }
         val trackFiltersIsIgnored = includedTracks.isEmpty() && excludedTracks.isEmpty()
 
-        // SY -->
-        val filterLewd = prefs.filterLewd
-        // SY <--
-
         val filterFnDownloaded: (LibraryItem) -> Boolean = {
             applyFilter(filterDownloaded) {
                 it.libraryManga.manga.isLocal() ||
@@ -302,12 +297,6 @@ class LibraryScreenModel(
             }
         }
 
-        // SY -->
-        val filterFnLewd: (LibraryItem) -> Boolean = {
-            applyFilter(filterLewd) { it.libraryManga.manga.isLewd() }
-        }
-        // SY <--
-
         val filterFnTracking: (LibraryItem) -> Boolean = tracking@{ item ->
             if (isNotLoggedInAnyTrack || trackFiltersIsIgnored) return@tracking true
 
@@ -328,10 +317,7 @@ class LibraryScreenModel(
                 filterFnBookmarked(it) &&
                 filterFnCompleted(it) &&
                 filterFnIntervalCustom(it) &&
-                filterFnTracking(it) &&
-                // SY -->
-                filterFnLewd(it)
-            // SY <--
+                filterFnTracking(it)
         }
 
         return this.mapValues { entry -> entry.value.fastFilter(filterFn) }
@@ -454,9 +440,6 @@ class LibraryScreenModel(
             libraryPreferences.filterBookmarked().changes(),
             libraryPreferences.filterCompleted().changes(),
             libraryPreferences.filterIntervalCustom().changes(),
-            // SY -->
-            libraryPreferences.filterLewd().changes(),
-            // SY <--
         ) {
             ItemPreferences(
                 downloadBadge = it[0] as Boolean,
@@ -470,9 +453,6 @@ class LibraryScreenModel(
                 filterBookmarked = it[8] as TriState,
                 filterCompleted = it[9] as TriState,
                 filterIntervalCustom = it[10] as TriState,
-                // SY -->
-                filterLewd = it[11] as TriState,
-                // SY <--
             )
         }
     }
@@ -1262,9 +1242,6 @@ class LibraryScreenModel(
         val filterBookmarked: TriState,
         val filterCompleted: TriState,
         val filterIntervalCustom: TriState,
-        // SY -->
-        val filterLewd: TriState,
-        // SY <--
     )
 
     @Immutable

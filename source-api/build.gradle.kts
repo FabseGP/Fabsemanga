@@ -15,7 +15,7 @@ kotlin {
                 api(libs.rxjava)
                 api(libs.jsoup)
                 // SY -->
-                api(project(":i18n"))
+                api(projects.i18n)
                 api(project(":i18n-sy"))
                 api(kotlinx.reflect)
                 // SY <--
@@ -23,7 +23,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation(project(":core"))
+                implementation(projects.core)
                 api(libs.preferencektx)
 
                 // Workaround for https://youtrack.jetbrains.com/issue/KT-57605

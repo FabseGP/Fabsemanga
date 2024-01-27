@@ -31,6 +31,7 @@ import com.elvishew.xlog.printer.file.naming.DateFileNameGenerator
 import eu.kanade.domain.DomainModule
 import eu.kanade.domain.SYDomainModule
 import eu.kanade.domain.base.BasePreferences
+import eu.kanade.domain.sync.SyncPreferences
 import eu.kanade.domain.ui.UiPreferences
 import eu.kanade.domain.ui.model.setAppCompatDelegateThemeMode
 import eu.kanade.tachiyomi.crash.CrashActivity
@@ -68,7 +69,6 @@ import org.conscrypt.Conscrypt
 import tachiyomi.core.i18n.stringResource
 import tachiyomi.core.util.system.logcat
 import tachiyomi.domain.storage.service.StorageManager
-import tachiyomi.domain.sync.SyncPreferences
 import tachiyomi.i18n.MR
 import tachiyomi.presentation.widget.WidgetManager
 import uy.kohesive.injekt.Injekt
@@ -154,10 +154,8 @@ class App : Application(), DefaultLifecycleObserver, ImageLoaderFactory {
         }
 
         val syncPreferences: SyncPreferences by injectLazy()
-        val syncFlags = syncPreferences.syncFlags().get()
-        if (syncPreferences.isSyncEnabled() && syncFlags and
-            SyncPreferences.Flags.SYNC_ON_APP_START == SyncPreferences.Flags.SYNC_ON_APP_START
-        ) {
+        val syncTriggerOpt = syncPreferences.getSyncTriggerOptions()
+        if (syncPreferences.isSyncEnabled() && syncTriggerOpt.syncOnAppStart) {
             SyncDataJob.startNow(this@App)
         }
     }
@@ -197,18 +195,16 @@ class App : Application(), DefaultLifecycleObserver, ImageLoaderFactory {
 
     override fun onStart(owner: LifecycleOwner) {
         SecureActivityDelegate.onApplicationStart()
+        val syncPreferences: SyncPreferences by injectLazy()
+        val syncTriggerOpt = syncPreferences.getSyncTriggerOptions()
+        if (syncPreferences.isSyncEnabled() && syncTriggerOpt.syncOnAppResume
+        ) {
+            SyncDataJob.startNow(this@App)
+        }
     }
 
     override fun onStop(owner: LifecycleOwner) {
         SecureActivityDelegate.onApplicationStopped()
-
-        val syncPreferences: SyncPreferences by injectLazy()
-        val syncFlags = syncPreferences.syncFlags().get()
-        if (syncPreferences.isSyncEnabled() && syncFlags
-            and SyncPreferences.Flags.SYNC_ON_APP_RESUME == SyncPreferences.Flags.SYNC_ON_APP_RESUME
-        ) {
-            SyncDataJob.startNow(this@App)
-        }
     }
 
     override fun getPackageName(): String {
